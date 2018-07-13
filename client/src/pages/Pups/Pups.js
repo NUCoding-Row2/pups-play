@@ -7,29 +7,30 @@ import { Col, Row, Container } from "../../components/Grid";
 import { List, ListItem } from "../../components/List";
 import { Input, TextArea, FormBtn } from "../../components/Form";
 
-class Books extends Component {
+class Pups extends Component {
   state = {
-    books: [],
-    title: "",
-    author: "",
-    synopsis: ""
+    Pups: [],
+    ownername: "",
+    pupname: "",
+    breed:"",
+    bio: ""
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.loadPups();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  loadPups = () => {
+    API.getPups()
       .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
+        this.setState({ Pups: res.data, ownername: "", pupname: "", breed:"", age:"", size:"", bio: "" })
       )
       .catch(err => console.log(err));
   };
 
-  deleteBook = id => {
-    API.deleteBook(id)
-      .then(res => this.loadBooks())
+  deletePup = id => {
+    API.deletePup(id)
+      .then(res => this.loadPups())
       .catch(err => console.log(err));
   };
 
@@ -42,13 +43,16 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    if (this.state.title && this.state.author) {
-      API.saveBook({
-        title: this.state.title,
-        author: this.state.author,
-        synopsis: this.state.synopsis
+    if (this.state.ownername && this.state.pupname) {
+      API.savePup({
+        ownername: this.state.ownername,
+        pupname: this.state.pupname,
+        breed: this.state.breed,
+        age: this.state.age,
+        size: this.state.size,
+        bio: this.state.bio
       })
-        .then(res => this.loadBooks())
+        .then(res => this.loadPups())
         .catch(err => console.log(err));
     }
   };
@@ -63,25 +67,43 @@ class Books extends Component {
             </Jumbotron>
             <form>
               <Input
-                value={this.state.title}
+                value={this.state.ownername}
                 onChange={this.handleInputChange}
-                name="title"
+                name="ownername"
                 placeholder="Owner's Name (required)"
               />
               <Input
-                value={this.state.author}
+                value={this.state.pupname}
                 onChange={this.handleInputChange}
-                name="author"
+                name="pupname"
                 placeholder="Pup's Name (required)"
               />
-              <TextArea
-                value={this.state.synopsis}
+              <Input
+                value={this.state.breed}
                 onChange={this.handleInputChange}
-                name="synopsis"
-                placeholder="Synopsis (Optional)"
+                name="breed"
+                placeholder="Pup's breed (required)"
+              />
+              <Input
+                value={this.state.age}
+                onChange={this.handleInputChange}
+                name="age"
+                placeholder="Pup's age (required)"
+              />
+              <Input
+                value={this.state.size}
+                onChange={this.handleInputChange}
+                name="size"
+                placeholder="Pup's size (required)"
+              />
+              <TextArea
+                value={this.state.bio}
+                onChange={this.handleInputChange}
+                name="bio"
+                placeholder="bio (Optional)"
               />
               <FormBtn
-                disabled={!(this.state.author && this.state.title)}
+                disabled={!(this.state.pupname && this.state.ownername)}
                 onClick={this.handleFormSubmit}
               >
                 Submit Puppy
@@ -92,16 +114,16 @@ class Books extends Component {
             <Jumbotron>
               <h1>Puppies On My List</h1>
             </Jumbotron>
-            {this.state.books.length ? (
+            {this.state.Pups.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <Link to={"/books/" + book._id}>
+                {this.state.Pups.map(Pup => (
+                  <ListItem key={Pup._id}>
+                    <Link to={"/Pups/" + Pup._id}>
                       <strong>
-                        {book.author} --> Owner: {book.title}
+                        {Pup.pupname} --> Owner: {Pup.ownername}
                       </strong>
                     </Link>
-                    <DeleteBtn onClick={() => this.deleteBook(book._id)} />
+                    <DeleteBtn onClick={() => this.deletePup(Pup._id)} />
                   </ListItem>
                 ))}
               </List>
@@ -115,4 +137,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Pups;
