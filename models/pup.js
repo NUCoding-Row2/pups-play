@@ -7,6 +7,7 @@ const PupSchema = new Schema({
   breed: { type: String, required: true },
   age: { type: String, required: true },
   size: { type: String, required: true },
+  location: {type: Number, required: true},
   // gender: { type: String, required: true },
   // SpayedNeutered: { type: Boolean, required: true },
   // vaccinations: { type: Boolean, required: true },
