@@ -112,7 +112,7 @@ class Pups extends Component {
           </Col>
           <Col size="md-6 sm-12">
             <Jumbotron>
-              <h1>Puppies On My List</h1>
+              <h1>Puppies' List</h1>
             </Jumbotron>
             {this.state.Pups.length ? (
               <List>

@@ -33,7 +33,14 @@ class Detail extends Component {
             <article>
               <h1>Synopsis</h1>
               <p>
-                {this.state.Pup.bio}
+                <h1>Dog Profile Details</h1>
+                <br/>
+                Owner's Name: {this.state.Pup.ownername} <br/>
+                Pup's Name{this.state.Pup.pupname} <br/>
+                Breed:{this.state.Pup.breed} <br/>
+                Age:{this.state.Pup.age}<br/>
+               Size: {this.state.Pup.size}<br/>
+               Bio:<br/>{this.state.Pup.bio}
               </p>
             </article>
           </Col>
