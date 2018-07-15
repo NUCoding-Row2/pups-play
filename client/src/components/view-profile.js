@@ -20,12 +20,12 @@ class PupProfile extends Component {
                 <h3 className="text-center mt-2">{this.state.Pup.pupname}'s Profile</h3>
                 <div className="panel" key={this.state.Pup._id}>
                     <div className="panel-header">
-                        <div class="panel-title"></div>
-                            <figure class="avatar avatar-xl">
+                        <div className="panel-title"></div>
+                            <figure className="avatar avatar-xl">
                                 <img src="../assets/images/winking-dog.png" alt="..." />
                             </figure>
                     </div>
-                    <div class="panel-body">
+                    <div className="panel-body">
                         My human: {this.state.Pup.ownername}
                         <br/>
                         Age: {this.state.Pup.age}

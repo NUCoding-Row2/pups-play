@@ -3,6 +3,8 @@ const Schema = mongoose.Schema;
 
 const PupSchema = new Schema({
   ownername: { type: String, required: true },
+  emailaddress: { type: String, required: true },
+  password: { type: String, required: true },
   pupname: { type: String, required: true },
   breed: { type: String, required: true },
   age: { type: String, required: true },

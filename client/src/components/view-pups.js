@@ -32,14 +32,14 @@ class ViewPups extends Component {
                 {this.state.Pups.map(pup => (
                     <div className="panel" key={pup._id}>
                         <div className="panel-header">
-                            <div class="panel-title">{pup.pupname}</div>
+                            <div className="panel-title">{pup.pupname}</div>
                             <a href={"/Pups/" + pup._id} id={pup._id}>
-                                <figure class="avatar avatar-xl">
+                                <figure className="avatar avatar-xl">
                                     <img src="../assets/images/winking-dog.png" alt="..." />
                                 </figure>
                             </a>
                         </div>
-                        <div class="panel-body">
+                        <div className="panel-body">
                             My human: {pup.ownername}
                             <br/>
                             Age: {pup.age}
