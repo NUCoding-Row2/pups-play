@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import API from '../utils/API';
 import { Link } from "react-router-dom";
 
+const flexStyle = {
+    "justifyContent": "center"
+}
+
+const divMargin = {
+    margin: "10px"
+}
+
 class ViewPups extends Component {
     state = {
         Pups: [],
@@ -29,28 +37,29 @@ class ViewPups extends Component {
         return (
             <div className="container grid-md">
                 <h3 className="text-center mt-2">Pups That Want to Play</h3>
-                {this.state.Pups.map(pup => (
-                    <div className="panel" key={pup._id}>
-                        <div className="panel-header">
-                            <div className="panel-title">{pup.pupname}</div>
-                            <a href={"/Pups/" + pup._id} id={pup._id}>
-                                <figure className="avatar avatar-xl">
-                                    <img src="../assets/images/winking-dog.png" alt="..." />
-                                </figure>
-                            </a>
+                <div className="columns" style={flexStyle}>
+                    {this.state.Pups.map(pup => (
+                        <div className="panel column col-4" style={divMargin} key={pup._id}>
+                            <div className="panel-header">
+                                <div className="panel-title">{pup.pupname}</div>
+                                <a href={"/Pups/" + pup._id} id={pup._id}>
+                                    <figure className="avatar avatar-xl">
+                                        <img src="../assets/images/winking-dog.png" alt="..." />
+                                    </figure>
+                                </a>
+                            </div>
+                            <div className="panel-body">
+                                My human: {pup.ownername}
+                                <br/>
+                                Age: {pup.age}
+                                <br/>
+                                Breed: {pup.breed}
+                                <br/>
+                                Location: {pup.location}
+                            </div>
                         </div>
-                        <div className="panel-body">
-                            My human: {pup.ownername}
-                            <br/>
-                            Age: {pup.age}
-                            <br/>
-                            Breed: {pup.breed}
-                            <br/>
-                            Location: {pup.location}
-                        </div>
-                    </div>
-                ))}
-                
+                    ))}
+                </div> 
             </div>
         );
     }

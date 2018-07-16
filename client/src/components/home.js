@@ -5,6 +5,10 @@ const image = {
     width: "100%"
 }
 
+const divMargin = {
+    "margin-top": "10px"
+}
+
 class Home extends Component {
     state = {
         Pup: {}
@@ -20,27 +24,9 @@ class Home extends Component {
 
     render() {
         return (
-            <div className="container grid-md">
+            <div className="container grid-md" style={divMargin}>
                 <div>
-                    <img src="./assets/images/up-close-pup.jpg" alt="" style={image} />
-                </div>
-                <div className="panel" key={this.state.Pup._id}>
-                    <div className="panel-header">
-                        <div class="panel-title"></div>
-                    </div>
-                    <div class="panel-body">
-                        {this.state.Pup.ownername}
-                        <br />
-                        {this.state.Pup.age}
-                        <br />
-                        {this.state.Pup.breed}
-                        <br />
-                        {this.state.Pup.size}
-                        <br />
-                        {this.state.Pup.location}
-                        <br />
-                        {this.state.Pup.bio}
-                    </div>
+                    <img src="./assets/images/logo.png" alt="" style={image} />
                 </div>
             </div>
         )

@@ -11,6 +11,8 @@ mongoose.connect(
 const PupSeed = [
   {
     ownername: "Liz S",
+    email: "liz@liz.com",
+    passsword: "Thisisapassword123",
     pupname: "Skeletor",
     breed: "Greyhound",
     age: "12",
@@ -21,6 +23,8 @@ const PupSeed = [
   },
   {
     ownername: "Alfredo C",
+    email: "alfredo@alfredo.com",
+    passsword: "Thisisapassword123",
     pupname: "Choco",
     breed: "Labrador Retriever",
     age: "3",
@@ -31,6 +35,8 @@ const PupSeed = [
   },
   {
     ownername: "Carolyn R",
+    email: "carolyn@carolyn.com",
+    passsword: "Thisisapassword123",
     pupname: "Tache",
     breed: "Dalmation",
     age: "2",
@@ -41,6 +47,8 @@ const PupSeed = [
   },
   {
     ownername: "Tony P",
+    email: "tony@tony.com",
+    passsword: "Thisisapassword123",
     pupname: "Fido",
     breed: "Mixed breed",
     age: "8",
