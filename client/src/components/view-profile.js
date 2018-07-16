@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 import { Link } from "react-router-dom";
+import Avatar from "../assets/images/winking-dog.png"
 
 const flexStyle = {
     "justifyContent": "center",
@@ -27,7 +28,7 @@ class PupProfile extends Component {
                         <div className="panel-header">
                             <div className="panel-title"></div>
                             <figure className="avatar avatar-xl">
-                                <img src="../../assets/images/winking-dog.png" alt="..." />
+                                <img src={Avatar} alt="..." />
                             </figure>
                         </div>
                         <div className="panel-body">

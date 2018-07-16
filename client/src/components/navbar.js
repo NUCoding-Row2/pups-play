@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PawIcon from "../assets/images/paw.png"
 
 const image = {
     width: "35px",
@@ -27,7 +28,8 @@ class Navbar extends Component {
                     </section>
                     <section className="navbar-center">
                         <h4 style={logoText}>Pups</h4>
-                        <a href="/"><img style={image} src="./assets/images/paw.png" alt="" /></a>
+                            {/*<a href="/"><img style={image} src="./assets/images/paw.png" alt="" /></a>*/}
+                            <a href="/"><img style={image} src={PawIcon} alt="..." /></a>
                         <h4 style={logoText}>Play</h4>
                     </section>
                     <section className="navbar-section">
