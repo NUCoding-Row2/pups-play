@@ -95,6 +95,7 @@ class Signup extends Component {
                         <label className="form-label" htmlFor="password">Password</label>
                         <input className="form-input"
                             value={this.state.password}
+                            type="password"
                             onChange={this.handleInputChange}
                             name="password"
                             placeholder="Password (required)"
