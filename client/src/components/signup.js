@@ -64,7 +64,7 @@ class Signup extends Component {
                 age: this.state.age,
                 size: this.state.size,
                 location: this.state.location,
-                bio: "",
+                bio: this.state.location,
                 date: Date.now
             })
                 .then(res => this.loadPups())
@@ -134,6 +134,13 @@ class Signup extends Component {
                             name="location"
                             placeholder="Zip code (required)"
                         />
+                        <br />
+                        <textarea className="form-input" htmlFor="bio"
+                            value={this.state.bio}
+                            onChange={this.handleInputChange}
+                            name="bio"
+                            placeholder="bio (Optional)"
+                        ></textarea>
                         <br />
                         <button className="btn btn-lg" onClick={this.handleFormSubmit}>
                             Submit

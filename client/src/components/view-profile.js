@@ -20,6 +20,15 @@ class PupProfile extends Component {
     }
 
     render() {
+
+        let pupBio;
+
+        if (this.state.Pup.bio) {
+            pupBio = <span>Bio: {this.state.Pup.bio}</span>;
+        } else {
+            null
+        }
+
         return (
             <div className="container grid-md" style={flexStyle}>
                 <h3 className="text-center mt-2">{this.state.Pup.pupname}'s Profile</h3>
@@ -42,9 +51,9 @@ class PupProfile extends Component {
                             <br />
                             Location: {this.state.Pup.location}
                             <br />
-                            Bio: {this.state.Pup.bio}
+                            {pupBio}
                             <br />
-                            <button className="btn btn-lg" type="submit" id={this.state.Pup._id}>Contact my human</button>
+                            <button className="btn btn-lg" type="submit" id={this.state.Pup._id}><a href={"mailto:" + this.state.Pup.email + "?subject=Saw " + this.state.Pup.pupname + " on Pups Play! Would like to set up a playdate."}>Contact my human</a></button>
                         </div>
                     </div>
                 </div>
