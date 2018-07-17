@@ -1209,13 +1209,8 @@ mongoose-legacy-pluralize@1.0.2:
   resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
 mongoose@^5.2.2:
-<<<<<<< HEAD
   version "5.2.3"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.2.3.tgz#667b92c394a6aa81c3c9f2f45f3a8f28cea28e9c"
-=======
-  version "5.2.2"
-  resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.2.2.tgz#3310e71e7e271c1134915c2d7fdf815eb2fa7072"
->>>>>>> 5a6b0b37b90979ec21750785598bd37d7a84e1db
   dependencies:
     async "2.6.1"
     bson "~1.0.5"
@@ -1295,8 +1290,8 @@ node-pre-gyp@^0.10.0:
     tar "^4"
 
 nodemon@^1.11.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.18.0.tgz#44b75d5f19065c47a262d4ab21990da3b6f8feae"
+  version "1.18.2"
+  resolved "https://registry.yarnpkg.com/nodemon/-/nodemon-1.18.2.tgz#36b89c790da70c4f270e2cc0718723131bc04abb"
   dependencies:
     chokidar "^2.0.2"
     debug "^3.1.0"
@@ -2088,10 +2083,8 @@ url-parse-lax@^1.0.0:
     prepend-http "^1.0.1"
 
 use@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/use/-/use-3.1.0.tgz#14716bf03fdfefd03040aef58d8b4b85f3a7c544"
-  dependencies:
-    kind-of "^6.0.2"
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
 
 util-deprecate@~1.0.1:
   version "1.0.2"
