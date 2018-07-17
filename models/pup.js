@@ -10,7 +10,7 @@ const PupSchema = new Schema({
   age: { type: String, required: true },
   size: { type: String, required: true },
   location: {type: Number, required: true},
-  bio: String,
+  bio: {type: String, required: false},
   date: { type: Date, default: Date.now }
 });
 

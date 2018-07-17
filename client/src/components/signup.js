@@ -64,7 +64,7 @@ class Signup extends Component {
                 age: this.state.age,
                 size: this.state.size,
                 location: this.state.location,
-                bio: this.state.location,
+                bio: this.state.bio,
                 date: Date.now
             })
                 .then(res => this.loadPups())
