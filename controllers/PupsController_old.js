@@ -1,9 +1,8 @@
 const db = require("../models");
-let testlocation = 60008;
+
 // Defining methods for the PupsController
 module.exports = {
   findAll: function(req, res) {
-    console.log("Retrieved ALL Dogs from Database on PupsController.js")
     db.Pup
       .find(req.query)
       .sort({ date: -1 })
@@ -13,34 +12,6 @@ module.exports = {
   findById: function(req, res) {
     db.Pup
       .findById(req.params.id)
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findByLocation: function(req,res){
-    console.log("Retrieve Dogs by Zip Code/Location");
-    db.Pup
-      .find( { location : testlocation }  ) 
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findByAge: function(req,res){
-    console.log("Retrieve Dogs by Age");
-    db.Pup
-      .find( { age : 3 }  ) 
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findBySize: function(req,res){
-    console.log("Retrieve Dogs by Age");
-    db.Pup
-      .find( { size : "Medium" }  ) 
-      .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
-  },
-  findByBreed: function(req,res){
-    console.log("Retrieve Dogs by Breed");
-    db.Pup
-      .find( { breed : "Lab" }  ) 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
