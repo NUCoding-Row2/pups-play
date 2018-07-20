@@ -1,5 +1,5 @@
 const db = require("../models");
-let testlocation = 60008;
+
 // Defining methods for the PupsController
 module.exports = {
   findAll: function(req, res) {
@@ -19,14 +19,14 @@ module.exports = {
   findByLocation: function(req,res){
     console.log("Retrieve Dogs by Zip Code/Location");
     db.Pup
-      .find( { location : testlocation }  ) 
+      .find( { location : req.body.location }  ) 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
   findByAge: function(req,res){
     console.log("Retrieve Dogs by Age");
     db.Pup
-      .find( { age : 3 }  ) 
+      .find( { age : req.body.age }  ) 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
