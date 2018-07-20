@@ -37,6 +37,7 @@ class ViewPups extends Component {
     };
 
     handleInputChange = event => {
+        // console.log(event.target.selected)
         const { name, value } = event.target;
         console.log(name);
         console.log(value);
@@ -85,6 +86,17 @@ class ViewPups extends Component {
     };
 
     render() {
+
+        let searchInput;
+        console.log(searchInput);
+
+        if (this.state.filterType == "location") {
+            searchInput = 
+            <input className="form-input" type="number" name="location" placeholder="enter your Zip Code" onChange={this.handleInputChange}></input>;
+        } else if (this.state.filterType == "age") {
+            searchInput = <input className="form-input" type="number" name="age" placeholder="enter age" onChange={this.handleInputChange}></input>
+        } 
+
         return (
             <div className="container grid-md">
                 <h3 className="text-center mt-2">Pups That Want to Play</h3>
@@ -120,13 +132,22 @@ class ViewPups extends Component {
                         </div>
                         <div className="panel-body">
                             <div className="form-group">
+                                Search Options:
+                            <select className="form-select" name="filterType" onChange={this.handleInputChange}>
+                                    <option value="">View All</option>
+                                    <option value="location" >Location</option>
+                                    <option value="age">Age</option>
+                                </select>
+                            </div>
+                            {searchInput}
+                            {/* <div className="form-group">
                                 Location:
                             <input className="form-input" type="number" name="location" placeholder="enter your Zip Code" onChange={this.handleInputChange}></input>
                             </div>
                             <div className="form-group">
                                 Age:
                             <input className="form-input" type="number" name="age" placeholder="enter age" onChange={this.handleInputChange}></input>
-                            </div>
+                            </div> */}
                             {/* <div className="form-group">
                                 Age:
                             <select className="form-select">
