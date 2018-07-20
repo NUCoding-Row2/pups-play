@@ -88,7 +88,7 @@ class ViewPups extends Component {
     render() {
 
         let searchInput;
-        console.log(searchInput);
+        // console.log(searchInput);
 
         if (this.state.filterType == "location") {
             searchInput = 
