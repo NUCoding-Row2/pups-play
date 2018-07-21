@@ -3,7 +3,7 @@ const db = require("../models");
 // Defining methods for the PupsController
 module.exports = {
   findAll: function(req, res) {
-    console.log("Retrieved ALL Dogs from Database on PupsController.js")
+    console.log("Retrieved ALL Dogs from Database on PupsController.js");
     db.Pup
       .find(req.query)
       .sort({ date: -1 })
@@ -11,6 +11,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findById: function(req, res) {
+    console.log("Retrieved Individual Dog from Database on PupsController.js");
     db.Pup
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
@@ -31,7 +32,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findBySize: function(req,res){
-    console.log("Retrieve Dogs by Age");
+    console.log("Retrieve Dogs by Size");
     db.Pup
       .find( { size : "Medium" }  ) 
       .then(dbModel => res.json(dbModel))
@@ -45,6 +46,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log("Adding a new user/pup to the database");
     db.Pup
       .create(req.body)
       .then(dbModel => res.json(dbModel))

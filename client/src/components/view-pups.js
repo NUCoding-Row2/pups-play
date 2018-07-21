@@ -46,43 +46,86 @@ class ViewPups extends Component {
         });
     };
 
+    handleReset = event => {
+        event.preventDefault();
+        console.log("view all button clicked");
+
+        window.location.reload();
+    }
+
     handleFormSubmit = event => {
         event.preventDefault();
-        console.log("button clicked")
+        console.log("search button clicked")
+
+        if (this.state.filterType == "location") {
+            API.searchPupLocation({
+                location: this.state.location,
+                date: Date.now
+            })
+                .then(res =>
+                    this.setState({
+                        Pups: res.data,
+                        ownername: "",
+                        pupname: "",
+                        breed: "",
+                        age: "",
+                        size: "",
+                        bio: ""
+                    })
+                )
+                .catch(err => console.log(err));
+        } else if (this.state.filterType == "age") {
+            API.searchPupAge({
+                age: this.state.age,
+                date: Date.now
+            })
+                .then(res =>
+                    this.setState({
+                        Pups: res.data,
+                        ownername: "",
+                        pupname: "",
+                        breed: "",
+                        age: "",
+                        size: "",
+                        bio: ""
+                    })
+                )
+                .catch(err => console.log(err));
+        } 
         
-        API.searchPupLocation({
-            location: this.state.location,
-            date: Date.now
-        })
-            .then(res =>
-                this.setState({
-                    Pups: res.data,
-                    ownername: "",
-                    pupname: "",
-                    breed: "",
-                    age: "",
-                    size: "",
-                    bio: ""
-                })
-            )
-            .catch(err => console.log(err));
+        // API.searchPupLocation({
+        //     location: this.state.location,
+        //     date: Date.now
+        // })
+        //     .then(res =>
+        //         this.setState({
+        //             Pups: res.data,
+        //             ownername: "",
+        //             pupname: "",
+        //             breed: "",
+        //             age: "",
+        //             size: "",
+        //             bio: ""
+        //         })
+        //     )
+        //     .catch(err => console.log(err));
         
-        API.searchPupAge({
-            age: this.state.age,
-            date: Date.now
-        })
-            .then(res =>
-                this.setState({
-                    Pups: res.data,
-                    ownername: "",
-                    pupname: "",
-                    breed: "",
-                    age: "",
-                    size: "",
-                    bio: ""
-                })
-            )
-            .catch(err => console.log(err));
+        // API.searchPupAge({
+        //     age: this.state.age,
+        //     date: Date.now
+        // })
+        //     .then(res =>
+        //         this.setState({
+        //             Pups: res.data,
+        //             ownername: "",
+        //             pupname: "",
+        //             breed: "",
+        //             age: "",
+        //             size: "",
+        //             bio: ""
+        //         })
+        //     )
+        //     .catch(err => console.log(err));
     };
 
     render() {
@@ -178,6 +221,7 @@ class ViewPups extends Component {
                                 </select>
                             </div> */}
                             <button className="btn btn-lg" type="submit" onClick={this.handleFormSubmit}> Search</button>
+                            <button className="btn btn-lg" type="submit" onClick={this.handleReset}> View All</button>
                         </div>
                     </div>
                 </div>

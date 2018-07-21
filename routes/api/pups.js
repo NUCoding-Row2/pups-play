@@ -34,5 +34,4 @@ router
   .put(PupsController.update)
   .delete(PupsController.remove);
 
-
 module.exports = router;
