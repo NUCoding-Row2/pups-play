@@ -76,9 +76,28 @@ class ViewPups extends Component {
                     })
                 )
                 .catch(err => console.log(err));
-        } else if (this.state.filterType == "age") {
-            API.searchPupAge({
-                age: this.state.age,
+        } 
+        // else if (this.state.filterType == "age") {
+        //     API.searchPupAge({
+        //         age: this.state.age,
+        //         date: Date.now
+        //     })
+        //         .then(res =>
+        //             this.setState({
+        //                 Pups: res.data,
+        //                 ownername: "",
+        //                 pupname: "",
+        //                 breed: "",
+        //                 age: "",
+        //                 size: "",
+        //                 bio: ""
+        //             })
+        //         )
+        //         .catch(err => console.log(err));
+        // } 
+        else if (this.state.filterType == "size") {
+            API.searchPupSize({
+                size: this.state.size,
                 date: Date.now
             })
                 .then(res =>
@@ -107,6 +126,8 @@ class ViewPups extends Component {
             <input className="form-input" type="number" name="location" placeholder="enter your Zip Code" onChange={this.handleInputChange}></input>;
         } else if (this.state.filterType == "age") {
             searchInput = <input className="form-input" type="number" name="age" placeholder="enter age" onChange={this.handleInputChange}></input>
+        } else if (this.state.filterType == "size") {
+            searchInput = <input className="form-input" type="text" name="size" placeholder="enter size" onChange={this.handleInputChange}></input>
         } 
 
         return (
@@ -132,6 +153,8 @@ class ViewPups extends Component {
                                         <br />
                                         Breed: {pup.breed}
                                         <br />
+                                        Size: {pup.size}
+                                        <br />
                                         Location: {pup.location}
                                     </div>
                                 </div>
@@ -149,6 +172,7 @@ class ViewPups extends Component {
                                     <option value="">View All</option>
                                     <option value="location" >Location</option>
                                     <option value="age">Age</option>
+                                    <option value="size">Size</option>
                                 </select>
                             </div>
                             {searchInput}

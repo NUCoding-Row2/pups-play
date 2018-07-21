@@ -26,4 +26,8 @@ export default {
     console.log("Searching by age");
     return axios.post("/api/pups/age", PupAge);
   },
+  searchPupSize: function(PupSize) {
+    console.log("Searching by size");
+    return axios.post("/api/pups/size", PupSize);
+  },
 };

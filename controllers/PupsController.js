@@ -31,9 +31,9 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findBySize: function(req,res){
-    console.log("Retrieve Dogs by Age");
+    console.log("Retrieve Dogs by Size");
     db.Pup
-      .find( { size : "Medium" }  ) 
+      .find( { size : req.body.size }  ) 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
