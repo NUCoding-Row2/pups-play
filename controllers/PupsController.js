@@ -1,9 +1,21 @@
 const db = require("../models");
 
+var cloudinary = require('cloudinary');
+
+// Cloudinary Configuraiton
+
+cloudinary.config({ 
+  cloud_name: 'acastillo', 
+  api_key: '653361767279137', 
+  api_secret: '9mJqffXR1bUQ3BP2wlN1c3SBVbA' 
+});
+ 
+
+
 // Defining methods for the PupsController
 module.exports = {
   findAll: function(req, res) {
-    console.log("Retrieved ALL Dogs from Database on PupsController.js")
+    console.log("PupsController.js: Retrieved ALL Dogs from Database on");
     db.Pup
       .find(req.query)
       .sort({ date: -1 })
@@ -45,6 +57,16 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log("PupsController.js: Request from Pups create ",req.body, req.file);
+    // send Image to cloudnary
+    cloudinary.uploader.upload('../uploads/' + req.file.filename, function(result) { 
+      console.log("Cloudinary Upload Result: ",result) 
+    });
+    // Add URL to pup Ojbect
+    // 
+
+
+
     db.Pup
       .create(req.body)
       .then(dbModel => res.json(dbModel))

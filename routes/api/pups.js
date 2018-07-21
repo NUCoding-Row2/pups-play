@@ -1,5 +1,22 @@
 const router = require("express").Router();
 const PupsController = require("../../controllers/PupsController");
+var multer  = require('multer')
+
+
+// Multer Configuration
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+ 
+var upload = multer({ storage: storage })
+// var upload = multer({ dest: '../../uploads'})
+
 
 // Matches with "/api/pups/location"
 router
@@ -25,7 +42,7 @@ router
 // Matches with "/api/pups"
 router.route("/")
   .get(PupsController.findAll)
-  .post(PupsController.create);
+  .post(upload.single('picture'),PupsController.create);
 
 // Matches with "/api/pups/:id"
 router

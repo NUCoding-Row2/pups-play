@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 import { Link } from "react-router-dom";
+// import { FormData } from "form-data";
 
 class Signup extends Component {
     state = {
@@ -16,6 +17,12 @@ class Signup extends Component {
         bio: "",
         date: ""
     };
+
+    constructor(props){
+        super(props);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.fileInput = React.createRef();
+    }
 
     componentDidMount() {
         this.loadPups();
@@ -55,18 +62,19 @@ class Signup extends Component {
     handleFormSubmit = event => {
         event.preventDefault();
         if (this.state.ownername && this.state.pupname) {
-            API.savePup({
-                ownername: this.state.ownername,
-                email: this.state.email,
-                password: this.state.password,
-                pupname: this.state.pupname,
-                breed: this.state.breed,
-                age: this.state.age,
-                size: this.state.size,
-                location: this.state.location,
-                bio: this.state.bio,
-                date: Date.now
-            })
+            let pupdata = new FormData();
+            pupdata.set('ownername',this.state.ownername);
+            pupdata.set('email', this.state.email);
+            pupdata.set('password',this.state.password);
+            pupdata.set('pupname',this.state.pupname);
+            pupdata.set('breed',this.state.breed);
+            pupdata.set('age',this.state.age);
+            pupdata.set('size',this.state.size);
+            pupdata.set('location',this.state.location);
+            pupdata.set('bio',this.state.bio);
+            pupdata.set('date',this.state.date);
+            pupdata.set('picture',this.fileInput.current.files[0],this.fileInput.current.files[0].name)
+            API.savePup(pupdata)
                 .then(res => this.loadPups())
                 .catch(err => console.log(err));
         }
@@ -134,6 +142,13 @@ class Signup extends Component {
                             onChange={this.handleInputChange}
                             name="location"
                             placeholder="Zip code (required)"
+                        />
+                        <label className="form-label" htmlFor="picture">Dog's Picture</label>
+                        <input type="file" ref={this.fileInput} className="form-input"
+                            value={this.state.picture}
+                            onChange={this.handleInputChange}
+                            name="picture"
+                            placeholder="Picture (required)"
                         />
                         <br />
                         <textarea className="form-input" htmlFor="bio"

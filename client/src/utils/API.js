@@ -15,7 +15,15 @@ export default {
   },
   // Saves a Pup to the database
   savePup: function(PupData) {
-    return axios.post("/api/pups", PupData);
+    return axios({
+      method: 'post',
+      url: "/api/pups",
+      data: PupData,
+      headers: {
+        Accept:'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    })
   },
   // Seach Pups by Location to the database
   searchPupLocation: function(PupLocation) {
