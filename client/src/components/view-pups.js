@@ -76,25 +76,25 @@ class ViewPups extends Component {
                     })
                 )
                 .catch(err => console.log(err));
-        } 
-        // else if (this.state.filterType == "age") {
-        //     API.searchPupAge({
-        //         age: this.state.age,
-        //         date: Date.now
-        //     })
-        //         .then(res =>
-        //             this.setState({
-        //                 Pups: res.data,
-        //                 ownername: "",
-        //                 pupname: "",
-        //                 breed: "",
-        //                 age: "",
-        //                 size: "",
-        //                 bio: ""
-        //             })
-        //         )
-        //         .catch(err => console.log(err));
-        // } 
+        }
+        else if (this.state.filterType == "age") {
+            API.searchPupAge({
+                age: this.state.age,
+                date: Date.now
+            })
+                .then(res =>
+                    this.setState({
+                        Pups: res.data,
+                        ownername: "",
+                        pupname: "",
+                        breed: "",
+                        age: "",
+                        size: "",
+                        bio: ""
+                    })
+                )
+                .catch(err => console.log(err));
+        }
         else if (this.state.filterType == "size") {
             API.searchPupSize({
                 size: this.state.size,
@@ -112,8 +112,25 @@ class ViewPups extends Component {
                     })
                 )
                 .catch(err => console.log(err));
-        } 
-        
+        }
+        else if (this.state.filterType == "breed") {
+            API.searchPupBreed({
+                breed: this.state.breed,
+                date: Date.now
+            })
+                .then(res =>
+                    this.setState({
+                        Pups: res.data,
+                        ownername: "",
+                        pupname: "",
+                        breed: "",
+                        age: "",
+                        size: "",
+                        bio: ""
+                    })
+                )
+                .catch(err => console.log(err));
+        }
     };
 
     render() {
@@ -122,13 +139,26 @@ class ViewPups extends Component {
         // console.log(searchInput);
 
         if (this.state.filterType == "location") {
-            searchInput = 
-            <input className="form-input" type="number" name="location" placeholder="enter your Zip Code" onChange={this.handleInputChange}></input>;
+            searchInput =
+                <input className="form-input" type="number" name="location" placeholder="enter your Zip Code" onChange={this.handleInputChange}></input>;
         } else if (this.state.filterType == "age") {
             searchInput = <input className="form-input" type="number" name="age" placeholder="enter age" onChange={this.handleInputChange}></input>
         } else if (this.state.filterType == "size") {
-            searchInput = <input className="form-input" type="text" name="size" placeholder="enter size" onChange={this.handleInputChange}></input>
-        } 
+            searchInput = <select className="form-select" name="size" onChange={this.handleInputChange}>
+                <option>Select a size</option>
+                <option value="small">Small (under 25 lbs)</option>
+                <option value="medium">Medium (26-50 lbs)</option>
+                <option value="large">Large (more than 50 lbs)</option>
+            </select>
+            // <input className="form-input" type="text" name="size" placeholder="enter size" onChange={this.handleInputChange}></input>
+        } else if (this.state.filterType == "breed") {
+            searchInput = <select className="form-select" name="breed" onChange={this.handleInputChange}>
+                <option>Select a breed</option>
+                <option value="Dalmation">Dalmation</option>
+                <option value="Greyhound">Greyhound</option>
+                <option value="Labrador Retriever">Labrador Retriever</option>
+            </select>
+        }
 
         return (
             <div className="container grid-md">
@@ -169,10 +199,11 @@ class ViewPups extends Component {
                             <div className="form-group">
                                 Search Options:
                             <select className="form-select" name="filterType" onChange={this.handleInputChange}>
-                                    <option value="">View All</option>
+                                    <option value="">Select a filter</option>
                                     <option value="location" >Location</option>
                                     <option value="age">Age</option>
                                     <option value="size">Size</option>
+                                    <option value="breed">Breed</option>
                                 </select>
                             </div>
                             {searchInput}
@@ -214,8 +245,8 @@ class ViewPups extends Component {
                                 </select>
                             </div> */}
                             <button className="btn btn-lg" type="submit" onClick={this.handleFormSubmit}>
-                             Search</button>
-                             <button className="btn btn-lg" type="submit" onClick={this.handleReset}> View All</button>
+                                Search</button>
+                            <button className="btn btn-lg" type="submit" onClick={this.handleReset}> View All</button>
                         </div>
                     </div>
                 </div>

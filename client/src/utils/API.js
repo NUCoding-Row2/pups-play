@@ -30,4 +30,8 @@ export default {
     console.log("Searching by size");
     return axios.post("/api/pups/size", PupSize);
   },
+  searchPupBreed: function(PupBreed) {
+    console.log("Searching by breed");
+    return axios.post("/api/pups/breed", PupBreed);
+  },
 };

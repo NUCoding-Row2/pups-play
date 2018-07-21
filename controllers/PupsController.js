@@ -40,7 +40,7 @@ module.exports = {
   findByBreed: function(req,res){
     console.log("Retrieve Dogs by Breed");
     db.Pup
-      .find( { breed : "Lab" }  ) 
+      .find( { breed : req.body.breed }  ) 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
