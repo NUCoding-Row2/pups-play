@@ -3,19 +3,24 @@ import API from '../utils/API';
 import { Link } from "react-router-dom";
 
 class Signup extends Component {
-    state = {
-        Pups: [],
-        ownername: "",
-        email: "",
-        password: "",
-        pupname: "",
-        breed: "",
-        age: "",
-        size: "",
-        location: "",
-        bio: "",
-        date: ""
-    };
+    constructor() {
+        super()
+        this.state = {
+            Pups: [],
+            ownername: "",
+            email: "",
+            password: "",
+            pupname: "",
+            breed: "",
+            age: "",
+            size: "",
+            location: "",
+            bio: "",
+            date: ""
+        }
+        this.handleFormSubmit = this.handleFormSubmit.bind(this)
+        this.handleInputChange = this.handleInputChange.bind(this)
+    }
 
     componentDidMount() {
         this.loadPups();
@@ -24,26 +29,28 @@ class Signup extends Component {
     loadPups = () => {
         API.getPups()
             .then(res =>
-                this.setState({ Pups: res.data, 
-                ownername: "",
-                email: "",
-                password: "",
-                pupname: "",
-                breed: "",
-                age: "",
-                size: "",
-                location: "",
-                bio: "",
-                date: "" })
+                this.setState({
+                    Pups: res.data,
+                    ownername: "",
+                    email: "",
+                    password: "",
+                    pupname: "",
+                    breed: "",
+                    age: "",
+                    size: "",
+                    location: "",
+                    bio: "",
+                    date: ""
+                })
             )
             .catch(err => console.log(err));
     };
 
-    deletePup = id => {
-        API.deletePup(id)
-            .then(res => this.loadPups())
-            .catch(err => console.log(err));
-    };
+    // deletePup = id => {
+    //     API.deletePup(id)
+    //         .then(res => this.loadPups())
+    //         .catch(err => console.log(err));
+    // };
 
     handleInputChange = event => {
         const { name, value } = event.target;
@@ -53,23 +60,39 @@ class Signup extends Component {
     };
 
     handleFormSubmit = event => {
+        console.log('sign-up handleSubmit, email: ')
+        console.log(this.state.email)
         event.preventDefault();
-        if (this.state.ownername && this.state.pupname) {
-            API.savePup({
-                ownername: this.state.ownername,
-                email: this.state.email,
-                password: this.state.password,
-                pupname: this.state.pupname,
-                breed: this.state.breed,
-                age: this.state.age,
-                size: this.state.size,
-                location: this.state.location,
-                bio: this.state.bio,
-                date: Date.now
+
+        API.signup({
+            ownername: this.state.ownername,
+            email: this.state.email,
+            password: this.state.password,
+            pupname: this.state.pupname,
+            breed: this.state.breed,
+            age: this.state.age,
+            size: this.state.size,
+            location: this.state.location,
+            bio: this.state.bio,
+            date: Date.now
+        })
+            .then(response => {
+                console.log(response)
+                if (!response.data.errmsg) {
+                    console.log('successful signup')
+                    this.setState({ //redirect to login page
+                        redirectTo: '/login'
+                    })
+                } else {
+                    console.log('user already taken - not unique email')
+                }
+            }).catch(error => {
+                console.log('signup error: ')
+                console.log(error)
+
             })
-                .then(res => this.loadPups())
-                .catch(err => console.log(err));
-        }
+            // .then(res => this.loadPups())
+            // .catch(err => console.log(err));
     };
 
     render() {
@@ -79,7 +102,7 @@ class Signup extends Component {
                 <div className="columns">
                     <form className="form-group col-6 col-mx-auto pt-2">
                         <label className="form-label" htmlFor="ownername">Owner's Name</label>
-                        <input className="form-input" 
+                        <input className="form-input"
                             value={this.state.ownername}
                             onChange={this.handleInputChange}
                             name="ownername"
