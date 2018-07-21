@@ -63,8 +63,9 @@ module.exports = {
       console.log("Cloudinary Upload Result: ",result) 
       console.log("Dog Picture: ", result.url);
     });
-    // Add URL to pup Ojbect
-    // 
+    // Add URL to pup Object
+    req.body.picture = result.url;
+    console.log("Req.body.picture:",req.body.picture);
 
     db.Pup
       .create(req.body)
