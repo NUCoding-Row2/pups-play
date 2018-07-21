@@ -43,7 +43,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findBySize: function(req,res){
-    console.log("Retrieve Dogs by Size");
+    console.log("Retrieve Dogs by Age");
     db.Pup
       .find( { size : req.body.size }  ) 
       .then(dbModel => res.json(dbModel))
@@ -52,7 +52,7 @@ module.exports = {
   findByBreed: function(req,res){
     console.log("Retrieve Dogs by Breed");
     db.Pup
-      .find( { breed : req.body.breed }  ) 
+      .find( { breed : req.body.size }  ) 
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -61,11 +61,10 @@ module.exports = {
     // send Image to cloudnary
     cloudinary.uploader.upload('../uploads/' + req.file.filename, function(result) { 
       console.log("Cloudinary Upload Result: ",result) 
+      console.log("Dog Picture: ", result.url);
     });
     // Add URL to pup Ojbect
     // 
-
-
 
     db.Pup
       .create(req.body)
