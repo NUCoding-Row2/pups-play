@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const bodyParser = require("body-parser");
 const morgan = require('morgan');
@@ -12,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
 
 // Middleware
-app.use(morgan('dev'))
+app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Serve up static assets (usually on heroku)
@@ -23,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 // Sessions
 app.use(
 	session({
-		secret: 'kitty-kat-meow', //pick a random string to make the hash that is generated secure
+		secret: process.env.HASH_SECRET, //pick a random string to make the hash that is generated secure
 		store: new MongoStore({ mongooseConnection: dbConnection }),
 		resave: false, //required
 		saveUninitialized: false //required

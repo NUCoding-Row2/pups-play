@@ -1,12 +1,6 @@
 const router = require("express").Router();
 const PupsController = require("../../controllers/PupsController");
 
-// Matches with "/signup"
-router
-  .route("/signup")
-  // .post(PupsController.create);
-  .post(PupsController.signup);
-
 // Matches with "/api/pups/location"
 router
   .route("/location")
@@ -31,6 +25,12 @@ router
 // Matches with "/api/pups"
 router.route("/")
   .get(PupsController.findAll)
+  .post(PupsController.create);
+
+// Not functional, need to revisit
+// router
+  // .route("/signup")
+  // .post(PupsController.signup);
   // .post(PupsController.create);
 
 // Matches with "/api/pups/:id"

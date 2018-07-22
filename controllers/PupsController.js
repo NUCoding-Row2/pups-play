@@ -1,4 +1,5 @@
 const db = require("../models");
+const passport = require('../passport');
 
 // Defining methods for the PupsController
 module.exports = {
@@ -14,6 +15,13 @@ module.exports = {
     console.log("Retrieved Individual Dog from Database on PupsController.js");
     db.Pup
       .findById(req.params.id)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  findByEmail: function (req, res) {
+    console.log("Retrieve Dogs by Email");
+    db.Pup
+      .find({ email: "liz@liz.com" })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
@@ -45,13 +53,46 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // create: function (req, res) {
-  //   console.log("Adding a new user/pup to the database");
-  //   db.Pup
-  //     .create(req.body)
-  //     .then(dbModel => res.json(dbModel))
-  //     .catch(err => res.status(422).json(err));
-  // },
+  create: function (req, res) {
+    console.log("Adding a new user/pup to the database");
+
+    const {ownername, email, password, pupname, breed, age, size, location, bio, date} = req.body;
+
+    // ADD VALIDATION
+    db.Pup
+      .findOne({ email: email }, (err, user) => {
+        if (err) {
+          console.log('Pups.js post error: ', err)
+        } else if (user) {
+          res.json({
+            error: `Sorry, already a user with the email: ${email}`
+          })
+        }
+        else {
+          const newPup = new db.Pup({
+            ownername: ownername,
+            email: email,
+            password: password,
+            pupname: pupname,
+            breed: breed,
+            age: age,
+            size: size,
+            location: location,
+            bio: bio,
+            date: date
+          })
+          newPup.save((err, savedPup) => {
+            if (err) return res.json(err)
+            res.json(savedPup)
+          })
+        }
+      })
+
+    // db.Pup
+    //   .create(req.body)
+    //   .then(dbModel => res.json(dbModel))
+    //   .catch(err => res.status(422).json(err));
+  },
   update: function (req, res) {
     db.Pup
       .findOneAndUpdate({ _id: req.params.id }, req.body)
@@ -65,39 +106,42 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  signup: function (req, res) {
-    console.log('user signup');
+  // Not functional, need to revisit
+  // signup: function (req, res) {
+  //   console.log('Signing up a new user and their pup');
 
-    // const { email, password } = req.body
-    
-    // ADD VALIDATION
-    db.Pup
-      .findOne({ email: req.body.email }, (err, user) => {
-        if (err) {
-          console.log('Pups.js post error: ', err)
-        } else if (user) {
-          res.json({
-            error: `Sorry, already a user with the email: ${req.body.email}`
-          })
-        }
-        else {
-          const newPup = new Pup({
-            ownername: req.body.ownername,
-            email: req.body.email,
-            password: req.body.password,
-            pupname: req.body.pupname,
-            breed: req.body.breed,
-            age: req.body.age,
-            size: req.body.size,
-            location: req.body.location,
-            bio: req.body.bio,
-            date: Date.now
-          })
-          newPup.save((err, savedPup) => {
-            if (err) return res.json(err)
-            res.json(savedPup)
-          })
-        }
-      })
-  }
+  //   const {ownername, email, password, pupname, breed, age, size, location, bio, date} = req.body;
+
+  //   console.log("Here is the email from the request: ", newPup.email);
+
+  //   // ADD VALIDATION
+  //   db.Pup
+  //     .findOne({ email: email }, (err, user) => {
+  //       if (err) {
+  //         console.log('Pups.js post error: ', err)
+  //       } else if (user) {
+  //         res.json({
+  //           error: `Sorry, already a user with the email: ${email}`
+  //         })
+  //       }
+  //       else {
+  //         const newPup = new Pup({
+  //           ownername: ownername,
+  //           email: email,
+  //           password: password,
+  //           pupname: pupname,
+  //           breed: breed,
+  //           age: age,
+  //           size: size,
+  //           location: location,
+  //           bio: bio,
+  //           date: date
+  //         })
+  //         newPup.save((err, savedPup) => {
+  //           if (err) return res.json(err)
+  //           res.json(savedPup)
+  //         })
+  //       }
+  //     })
+  // },
 };

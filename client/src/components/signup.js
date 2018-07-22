@@ -46,12 +46,6 @@ class Signup extends Component {
             .catch(err => console.log(err));
     };
 
-    // deletePup = id => {
-    //     API.deletePup(id)
-    //         .then(res => this.loadPups())
-    //         .catch(err => console.log(err));
-    // };
-
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -64,7 +58,7 @@ class Signup extends Component {
         console.log(this.state.email)
         event.preventDefault();
 
-        API.signup({
+        API.savePup({
             ownername: this.state.ownername,
             email: this.state.email,
             password: this.state.password,
@@ -76,23 +70,31 @@ class Signup extends Component {
             bio: this.state.bio,
             date: Date.now
         })
-            .then(response => {
-                console.log(response)
-                if (!response.data.errmsg) {
+            // .then(res => this.loadPups())
+            .then(res => {
+                console.log(res)
+                if (!res.data.error) {
                     console.log('successful signup')
-                    this.setState({ //redirect to login page
-                        redirectTo: '/login'
+                    this.setState({
+                        ownername: "",
+                        email: "",
+                        password: "",
+                        pupname: "",
+                        breed: "",
+                        age: "",
+                        size: "",
+                        location: "",
+                        bio: "",
+                        date: ""
                     })
                 } else {
-                    console.log('user already taken - not unique email')
+                    console.log('username already taken')
                 }
-            }).catch(error => {
-                console.log('signup error: ')
-                console.log(error)
-
             })
-            // .then(res => this.loadPups())
-            // .catch(err => console.log(err));
+            .catch(err => {
+                console.log('signup error: ')
+                console.log(err)
+            });
     };
 
     render() {

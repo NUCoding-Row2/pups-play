@@ -23,7 +23,7 @@ class Navbar extends Component {
                 <header className="navbar">
                     <section className="navbar-section">
                     <a href="/signup" className="btn btn-link" style={text}>Sign Up</a>
-                    {/*<a href="/login" className="btn btn-link" style={text}>Login</a>*/}
+                    <a href="/login" className="btn btn-link" style={text}>Login</a>
                     <a href="/pups" className="btn btn-link" style={text}>View Pups</a>
                     </section>
                     <section className="navbar-center">
