@@ -15,6 +15,7 @@ class Signup extends Component {
         size: "",
         location: "",
         bio: "",
+        photo:"",
         date: ""
     };
 
@@ -73,6 +74,7 @@ class Signup extends Component {
             pupdata.set('location',this.state.location);
             pupdata.set('bio',this.state.bio);
             pupdata.set('date',this.state.date);
+            pupdata.set('photo',this.state.photo); //this is the photo url on MongoDB, not the file itself
             pupdata.set('picture',this.fileInput.current.files[0],this.fileInput.current.files[0].name)
             API.savePup(pupdata)
                 .then(res => this.loadPups())
