@@ -15,38 +15,42 @@ const acceptedFilesTypes = [
 const checkFileType = fileType => {
   let safe = false;
   for (let type of acceptedFilesTypes) {
+    console.log(type,fileType);
     if (fileType === type) {
       safe = true;
     }
   }
+  console.log(safe);
   return safe;
 };
 
-var storage = multer.diskStorage({
+const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    // cb(null, '../uploads')
+    console.log("pups.js: Disk Storage Configuration on Multer 'files' folder");
     cb(null, 'files/')
   },
   filename: function (req, file, cb) {
+    console.log("pups.js: Multer file",file);
     cb(null, file.fieldname + '-' + Date.now())
   }
 })
 
 // var upload = multer({ dest: '../../uploads'})
-var upload = multer({ storage: storage });
-// var upload = multer({
-//   storage: storage,
-//   fileFilter: (req, file, next) => {
-//     if (!checkFileType(file.mimetype)) {
-//       req.fileValidationError = true;
-//       console.log("pups.js: Multer File binary format validated");
-//       return next(null, false, req.fileValidationError);
-//     } else {
-//       console.log("pups.js: Multer File binary format validation failed.");
-//       next(null, true);
-//     }
-//   }
-// });
+// const upload = multer({ storage: storage });
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, next) => {
+    if (!checkFileType(file.mimetype)) {
+      req.fileValidationError = true;
+      console.log("pups.js: ERROR - Multer file format not valid format");
+      return next(null, false, req.fileValidationError);
+    } else {
+      console.log("pups.js: Multer File binary format validated");
+      next(null, true);
+    }
+  }
+});
+
 
 // ######## End of  Multer Configuration ###############
 
