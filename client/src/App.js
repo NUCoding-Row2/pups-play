@@ -99,27 +99,42 @@ class App extends Component {
             exact path="/"
             component={Home} />
           <Route
-            path="/login"
+            exact path="/signup"
+            render={() =>
+              <Signup />}
+          />
+          <Route
+            exact path="/login"
             render={() =>
               <Login
                 updateUser={this.updateUser}
               />}
           />
           <Route
-            path="/profile"
+            exact path="/profile"
             render={() =>
               <UserProfile
                 updateUser={this.updateUser}
                 loggedIn={this.state.loggedIn}
               />}
-            />
-          <Route
-            path="/signup"
-            render={() =>
-              <Signup />}
           />
-          <Route exact path="/pups" component={ViewPups} />
+          <Route
+            exact path="/pups"
+            render={() =>
+              <ViewPups
+                updateUser={this.updateUser}
+                loggedIn={this.state.loggedIn}
+              />}
+          />
           <Route exact path="/pups/:id" component={PupProfile} />
+          {/*<Route
+            exact path="/pups/:id"
+            render={() =>
+              <PupProfile
+                // updateUser={this.updateUser}
+                // loggedIn={this.state.loggedIn}
+              />}
+            />*/}
         </div>
       </Router>
     );
