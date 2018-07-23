@@ -13,9 +13,14 @@ export default {
   deletePup: function(id) {
     return axios.delete("/api/pups/" + id);
   },
-  // Saves a Pup to the database
-  savePup: function(PupData) {
-    return axios.post("/api/pups", PupData);
+  // // Saves a Pup to the database
+  // savePup: function(PupData) {
+  //   return axios.post("/api/pups", PupData);
+  // },
+  // Adding new user/pup to the database
+  signup: function(PupData) {
+    console.log("Adding new user/pup to the database");
+    return axios.post("/api/pups/", PupData)
   },
   // Seach Pups by Location to the database
   searchPupLocation: function(PupLocation) {
@@ -26,19 +31,14 @@ export default {
     console.log("Searching by age");
     return axios.post("/api/pups/age", PupAge);
   },
-  // Adds a new Pup (ie new user) to the database, but with a check for existing user - not currently functional, will need to revisit
-  // signup: function(PupData) {
-  //   console.log("Sign up user");
-  //   return axios.post("/api/pups", PupData);
-  // },
   //Not currently functional, will try to implement
-  login: function(User) {
+  login: function(UniquePup) {
     console.log("Login user");
-    return axios.post("/login", User);
+    return axios.post("/api/pups/login", UniquePup);
   },
   //Not currently functional, will try to implement
   getCurrentUser: function() {
-    console.log("Getting logged in user info");
-    return axios.get("/currentuser");
+    console.log("Getting currennt user info");
+    return axios.get("/api/pups/currentUser");
   },
 };

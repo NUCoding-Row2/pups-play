@@ -17,15 +17,45 @@ const logoText = {
 }
 
 class Navbar extends Component {
+    // constructor() {
+    //     super()
+    //     this.logout = this.logout.bind(this)
+    // }
+
+    // logout(event) {
+    //     event.preventDefault()
+    //     console.log('logging out')
+    //     axios.post('/api/pups/logout').then(response => {
+    //       console.log(response.data)
+    //       if (response.status === 200) {
+    //         this.props.updateUser({
+    //           loggedIn: false,
+    //           email: null
+    //         })
+    //       }
+    //     }).catch(error => {
+    //         console.log('Logout error')
+    //     })
+    //   }
+
+
     render () {
+        // const loggedIn = this.props.loggedIn;
+        // console.log('navbar render, props: ')
+        // console.log(this.props);
+
+
+
         return (
             <div>
                 <header className="navbar">
                     <section className="navbar-section">
-                    <a href="/signup" className="btn btn-link" style={text}>Sign Up</a>
-                    <a href="/login" className="btn btn-link" style={text}>Login</a>
-                    <a href="/pups" className="btn btn-link" style={text}>View Pups</a>
+                        {/*<a href="/logout" className="btn btn-link" style={text} onClick={this.logout}>Logout</a>*/}
+                        <a href="/signup" className="btn btn-link" style={text}>Sign Up</a>
+                        <a href="/login" className="btn btn-link" style={text}>Login</a>
+                        <a href="/pups" className="btn btn-link" style={text}>View Pups</a>                 
                     </section>
+                    
                     <section className="navbar-center">
                         <h4 style={logoText}>Pups</h4>
                             {/*<a href="/"><img style={image} src="./assets/images/paw.png" alt="" /></a>*/}

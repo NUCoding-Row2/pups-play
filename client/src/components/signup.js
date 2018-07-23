@@ -6,7 +6,7 @@ class Signup extends Component {
     constructor() {
         super()
         this.state = {
-            Pups: [],
+            // Pups: [],
             ownername: "",
             email: "",
             password: "",
@@ -22,30 +22,6 @@ class Signup extends Component {
         this.handleInputChange = this.handleInputChange.bind(this)
     }
 
-    componentDidMount() {
-        this.loadPups();
-    }
-
-    loadPups = () => {
-        API.getPups()
-            .then(res =>
-                this.setState({
-                    Pups: res.data,
-                    ownername: "",
-                    email: "",
-                    password: "",
-                    pupname: "",
-                    breed: "",
-                    age: "",
-                    size: "",
-                    location: "",
-                    bio: "",
-                    date: ""
-                })
-            )
-            .catch(err => console.log(err));
-    };
-
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -58,7 +34,7 @@ class Signup extends Component {
         console.log(this.state.email)
         event.preventDefault();
 
-        API.savePup({
+        API.signup({
             ownername: this.state.ownername,
             email: this.state.email,
             password: this.state.password,
@@ -70,7 +46,6 @@ class Signup extends Component {
             bio: this.state.bio,
             date: Date.now
         })
-            // .then(res => this.loadPups())
             .then(res => {
                 console.log(res)
                 if (!res.data.error) {

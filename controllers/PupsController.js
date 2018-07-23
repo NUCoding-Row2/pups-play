@@ -3,13 +3,22 @@ const passport = require('../passport');
 
 // Defining methods for the PupsController
 module.exports = {
-  findAll: function (req, res) {
+  findAll: function (req, res, next) {
     console.log("Retrieved ALL Dogs from Database on PupsController.js");
     db.Pup
       .find(req.query)
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
+    
+    // console.log('===== user!!======')
+    // console.log(req.user)
+    // if (req.user) {
+    //     res.json({ user: req.user })
+    // } else {
+    //     res.json({ user: null })
+    // }
+    
   },
   findById: function (req, res) {
     console.log("Retrieved Individual Dog from Database on PupsController.js");
@@ -54,7 +63,7 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    console.log("Adding a new user/pup to the database");
+    console.log("User sign up");
 
     const {ownername, email, password, pupname, breed, age, size, location, bio, date} = req.body;
 
