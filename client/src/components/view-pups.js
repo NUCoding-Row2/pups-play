@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Avatar from "../assets/images/winking-dog.png"
 
 
@@ -57,7 +57,7 @@ class ViewPups extends Component {
         event.preventDefault();
         console.log("search button clicked")
 
-        if (this.state.filterType == "location") {
+        if (this.state.filterType === "location") {
             API.searchPupLocation({
                 location: this.state.location,
                 date: Date.now
@@ -74,7 +74,7 @@ class ViewPups extends Component {
                     })
                 )
                 .catch(err => console.log(err));
-        } else if (this.state.filterType == "age") {
+        } else if (this.state.filterType === "age") {
             API.searchPupAge({
                 age: this.state.age,
                 date: Date.now
@@ -133,10 +133,10 @@ class ViewPups extends Component {
         let searchInput;
         // console.log(searchInput);
 
-        if (this.state.filterType == "location") {
+        if (this.state.filterType === "location") {
             searchInput = 
             <input className="form-input" type="number" name="location" placeholder="enter your Zip Code" onChange={this.handleInputChange}></input>;
-        } else if (this.state.filterType == "age") {
+        } else if (this.state.filterType === "age") {
             searchInput = <input className="form-input" type="number" name="age" placeholder="enter age" onChange={this.handleInputChange}></input>
         } 
 
