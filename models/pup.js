@@ -13,6 +13,7 @@ const PupSchema = new Schema({
   size: { type: String, trim: true, required: true },
   location: {type: Number, trim: true, required: true},
   bio: {type: String, required: false},
+  photo: { type: String, required: false},
   date: { type: Date, default: Date.now }
 });
 

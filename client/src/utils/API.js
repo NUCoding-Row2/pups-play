@@ -20,7 +20,16 @@ export default {
   // Adding new user/pup to the database
   signup: function(PupData) {
     console.log("Adding new user/pup to the database");
-    return axios.post("/api/pups/", PupData)
+    // return axios.post("/api/pups/", PupData)
+    return axios({
+      method: 'post',
+      url: "/api/pups",
+      data: PupData,
+      headers: {
+        Accept:'application/json',
+        'Content-Type': 'multipart/form-data'
+      }
+    });
   },
   // Seach Pups by Location to the database
   searchPupLocation: function(PupLocation) {
@@ -31,7 +40,14 @@ export default {
     console.log("Searching by age");
     return axios.post("/api/pups/age", PupAge);
   },
-  //Not currently functional, will try to implement
+  searchPupSize: function(PupSize) {
+    console.log("Searching by size");
+    return axios.post("/api/pups/size", PupSize);
+  },
+  searchPupBreed: function(PupBreed) {
+    console.log("Searching by breed");
+    return axios.post("/api/pups/breed", PupBreed);
+  },
   login: function(UniquePup) {
     console.log("Login user");
     return axios.post("/api/pups/login", UniquePup);

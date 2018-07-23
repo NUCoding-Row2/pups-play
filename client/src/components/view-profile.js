@@ -43,7 +43,8 @@ class PupProfile extends Component {
                                 <div className="panel-header">
                                     <div className="panel-title"></div>
                                     <figure className="avatar avatar-xl">
-                                        <img src={Avatar} alt="..." />
+                                        {/*<img src={Avatar} alt="..." />*/}
+                                        <img src={this.state.Pup.photo} alt="..." />
                                     </figure>
                                 </div>
                                 <div className="panel-body">

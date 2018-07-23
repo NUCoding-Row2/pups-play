@@ -1,5 +1,15 @@
 const db = require("../models");
+const Post = require("../models");
 const passport = require('../passport');
+var cloudinary = require('cloudinary');
+
+// Cloudinary Configuraiton
+cloudinary.config({
+  cloud_name: 'acastillo',
+  api_key: '653361767279137',
+  api_secret: '9mJqffXR1bUQ3BP2wlN1c3SBVbA'
+});
+
 
 // Defining methods for the PupsController
 module.exports = {
@@ -10,15 +20,6 @@ module.exports = {
       .sort({ date: -1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
-    
-    // console.log('===== user!!======')
-    // console.log(req.user)
-    // if (req.user) {
-    //     res.json({ user: req.user })
-    // } else {
-    //     res.json({ user: null })
-    // }
-    
   },
   findById: function (req, res) {
     console.log("Retrieved Individual Dog from Database on PupsController.js");
@@ -63,39 +64,73 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function (req, res) {
-    console.log("User sign up");
+    console.log("PupsController.js: Request from Pups create: ", req.body);
+    console.log("PupsController.js: file from sent from Muster: ", req.file);
+    // send Image to cloudnary
+    // path = '../uploads/' + req.file.filename;
+    path = 'files/' + req.file.filename;
+    console.log("File Path:", path);
+    cloudinary.uploader.upload(
+      // '../uploads/' + req.file.filename,
+      path,
+      function (result) {
+        console.log("#################################");
+        console.log("Cloudinary Upload Result: ", result);
+        console.log("Dog Picture: ", result.url);
+        console.log("#################################");
 
-    const {ownername, email, password, pupname, breed, age, size, location, bio, date} = req.body;
-
-    // ADD VALIDATION
-    db.Pup
-      .findOne({ email: email }, (err, user) => {
-        if (err) {
-          console.log('Pups.js post error: ', err)
-        } else if (user) {
-          res.json({
-            error: `Sorry, already a user with the email: ${email}`
-          })
-        }
-        else {
-          const newPup = new db.Pup({
-            ownername: ownername,
-            email: email,
-            password: password,
-            pupname: pupname,
-            breed: breed,
-            age: age,
-            size: size,
-            location: location,
-            bio: bio,
-            date: date
-          })
-          newPup.save((err, savedPup) => {
-            if (err) return res.json(err)
-            res.json(savedPup)
-          })
-        }
+        // Add URL to new pup Object
+        const newPup = {
+          ownername: req.body.ownername,
+          email: req.body.email,
+          password: req.body.password,
+          pupname: req.body.pupname,
+          breed: req.body.breed,
+          age: req.body.age,
+          size: req.body.size,
+          location: req.body.location,
+          bio: req.body.bio,
+          photo: result.url,
+          date: req.body.date
+        };
+        console.log("New Pup Object:", newPup);
+        db.Pup
+          .create(newPup)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
       })
+
+    // const { ownername, email, password, pupname, breed, age, size, location, bio, date } = req.body;
+
+    // // ADD VALIDATION
+    // db.Pup
+    //   .findOne({ email: email }, (err, user) => {
+    //     if (err) {
+    //       console.log('Pups.js post error: ', err)
+    //     } else if (user) {
+    //       res.json({
+    //         error: `Sorry, already a user with the email: ${email}`
+    //       })
+    //     }
+    //     else {
+    //       const newPup = new db.Pup({
+    //         ownername: ownername,
+    //         email: email,
+    //         password: password,
+    //         pupname: pupname,
+    //         breed: breed,
+    //         age: age,
+    //         size: size,
+    //         location: location,
+    //         bio: bio,
+    //         date: date
+    //       })
+    //       newPup.save((err, savedPup) => {
+    //         if (err) return res.json(err)
+    //         res.json(savedPup)
+    //       })
+    //     }
+    //   })
 
     // db.Pup
     //   .create(req.body)
@@ -115,42 +150,4 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
-  // Not functional, need to revisit
-  // signup: function (req, res) {
-  //   console.log('Signing up a new user and their pup');
-
-  //   const {ownername, email, password, pupname, breed, age, size, location, bio, date} = req.body;
-
-  //   console.log("Here is the email from the request: ", newPup.email);
-
-  //   // ADD VALIDATION
-  //   db.Pup
-  //     .findOne({ email: email }, (err, user) => {
-  //       if (err) {
-  //         console.log('Pups.js post error: ', err)
-  //       } else if (user) {
-  //         res.json({
-  //           error: `Sorry, already a user with the email: ${email}`
-  //         })
-  //       }
-  //       else {
-  //         const newPup = new Pup({
-  //           ownername: ownername,
-  //           email: email,
-  //           password: password,
-  //           pupname: pupname,
-  //           breed: breed,
-  //           age: age,
-  //           size: size,
-  //           location: location,
-  //           bio: bio,
-  //           date: date
-  //         })
-  //         newPup.save((err, savedPup) => {
-  //           if (err) return res.json(err)
-  //           res.json(savedPup)
-  //         })
-  //       }
-  //     })
-  // },
 };

@@ -25,6 +25,7 @@ class App extends Component {
       size: null,
       location: null,
       bio: null,
+      photo: null,
       date: null
     }
 
@@ -55,6 +56,7 @@ class App extends Component {
           size: response.data.user.size,
           location: response.data.user.location,
           bio: response.data.user.bio,
+          photo: response.data.user.photo,
           date: response.data.user.date,
         })
       } else {
@@ -71,6 +73,7 @@ class App extends Component {
           size: null,
           location: null,
           bio: null,
+          photo: null,
           date: null
         })
       }

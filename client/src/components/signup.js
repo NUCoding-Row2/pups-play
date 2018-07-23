@@ -1,27 +1,31 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 // import { Link } from "react-router-dom";
+// import { FormData } from "form-data";
 import API from '../utils/API';
 
 
 class Signup extends Component {
-    constructor() {
-        super()
-        this.state = {
-            // Pups: [],
-            ownername: "",
-            email: "",
-            password: "",
-            pupname: "",
-            breed: "",
-            age: "",
-            size: "",
-            location: "",
-            bio: "",
-            date: ""
-        }
-        this.handleFormSubmit = this.handleFormSubmit.bind(this)
-        this.handleInputChange = this.handleInputChange.bind(this)
+    state = {
+        // Pups: [],
+        ownername: "",
+        email: "",
+        password: "",
+        pupname: "",
+        breed: "",
+        age: "",
+        size: "",
+        location: "",
+        bio: "",
+        photo: "",
+        date: ""
+    }
+
+    constructor(props) {
+        super(props)
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.fileInput = React.createRef();
     }
 
     handleInputChange = event => {
@@ -32,47 +36,56 @@ class Signup extends Component {
     };
 
     handleFormSubmit = event => {
-        console.log('sign-up handleSubmit, email: ')
-        console.log(this.state.email)
+        console.log('sign-up handleSubmit, email: ');
+        console.log(this.state.email);
         event.preventDefault();
 
-        API.signup({
-            ownername: this.state.ownername,
-            email: this.state.email,
-            password: this.state.password,
-            pupname: this.state.pupname,
-            breed: this.state.breed,
-            age: this.state.age,
-            size: this.state.size,
-            location: this.state.location,
-            bio: this.state.bio,
-            date: Date.now
-        })
-            .then(res => {
-                console.log(res)
-                if (!res.data.error) {
-                    console.log('successful signup')
-                    this.setState({
-                        redirectTo: '/login',
-                        ownername: "",
-                        email: "",
-                        password: "",
-                        pupname: "",
-                        breed: "",
-                        age: "",
-                        size: "",
-                        location: "",
-                        bio: "",
-                        date: ""
-                    })
-                } else {
-                    console.log('username already taken')
-                }
-            })
-            .catch(err => {
-                console.log('signup error: ')
-                console.log(err)
-            });
+        if (this.state.ownername && this.state.pupname) {
+            let pupdata = new FormData();
+
+            pupdata.set('ownername', this.state.ownername);
+            pupdata.set('email', this.state.email);
+            pupdata.set('password', this.state.password);
+            pupdata.set('pupname', this.state.pupname);
+            pupdata.set('breed', this.state.breed);
+            pupdata.set('age', this.state.age);
+            pupdata.set('size', this.state.size);
+            pupdata.set('location', this.state.location);
+            pupdata.set('bio', this.state.bio);
+            pupdata.set('photo', this.state.photo); //this is the photo url on MongoDB, not the file itself
+            pupdata.set('date', this.state.date);
+            pupdata.set('picture', this.fileInput.current.files[0], this.fileInput.current.files[0].name);
+
+            API.signup(pupdata)
+                .then(res => {
+                    console.log(res)
+                    if (!res.data.error) {
+                        console.log('successful signup')
+                        this.setState({
+                            // redirectTo: '/login',
+                            ownername: "",
+                            email: "",
+                            password: "",
+                            pupname: "",
+                            breed: "",
+                            age: "",
+                            size: "",
+                            location: "",
+                            bio: "",
+                            photo: "",
+                            date: ""
+                        })
+                    } else {
+                        console.log('username already taken')
+                    }
+                })
+                .catch(err => {
+                    console.log('signup error: ')
+                    console.log(err)
+                });
+        }
+
+
     };
 
     render() {
@@ -140,6 +153,15 @@ class Signup extends Component {
                                 onChange={this.handleInputChange}
                                 name="location"
                                 placeholder="Zip code (required)"
+                            />
+                            <label className="form-label" htmlFor="picture">Your Pup's Photo</label>
+                            <input className="form-input"
+                                type="file"
+                                ref={this.fileInput}
+                                value={this.state.picture}
+                                onChange={this.handleInputChange}
+                                name="picture"
+                                placeholder="Picture (required)"
                             />
                             <br />
                             <textarea className="form-input" htmlFor="bio"
