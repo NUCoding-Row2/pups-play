@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const db = require("../models");
 const Post = require("../models");
 const passport = require('../passport');
@@ -5,9 +7,9 @@ var cloudinary = require('cloudinary');
 
 // Cloudinary Configuraiton
 cloudinary.config({
-  cloud_name: 'acastillo',
-  api_key: '653361767279137',
-  api_secret: '9mJqffXR1bUQ3BP2wlN1c3SBVbA'
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_KEY,
+  api_secret: process.env.CLOUD_SECRET
 });
 
 
