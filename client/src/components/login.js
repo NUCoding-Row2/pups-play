@@ -44,7 +44,7 @@ class Login extends Component {
                         // pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$" 
                         />
                         <br />
-                        <button className="btn btn-lg" type="submit">Log In</button>
+                        <button className="btn btn-lg" type="submit" onClick={this.handleFormSubmit}>Log In</button>
                     </div>
                 </div>
             </div>
