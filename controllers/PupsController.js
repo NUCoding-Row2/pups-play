@@ -56,11 +56,15 @@ var cloudinary = require('cloudinary');
         .catch(err => res.status(422).json(err));
     },
     create: function (req, res) {
-      console.log("PupsController.js: Request from Pups create ", req.body);
-      console.log("PupsController.js: file from sent from Muster ", req.file);
+      console.log("PupsController.js: Request from Pups create: ", req.body);
+      console.log("PupsController.js: file from sent from Muster: ", req.file);
       // send Image to cloudnary
+      // path = '../uploads/' + req.file.filename;
+      path = 'files/' + req.file.filename;
+      console.log("File Path:",path);
       cloudinary.uploader.upload(
-        '../uploads/' + req.file.filename,
+        // '../uploads/' + req.file.filename,
+        path,
         function (result) {
           console.log("#################################");
           console.log("Cloudinary Upload Result: ", result);
