@@ -26,8 +26,9 @@ class Navbar extends Component {
     }
 
     logout(event) {
-        event.preventDefault()
-        console.log('logging out')
+        event.preventDefault();
+        console.log('logging out');
+        
         axios.post('/api/pups/logout').then(response => {
             console.log(response.data)
             if (response.status === 200) {

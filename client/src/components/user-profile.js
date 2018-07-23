@@ -85,6 +85,7 @@ class UserProfile extends Component {
                         <div className="columns">
                             <form className="form-group col-6 col-mx-auto pt-2">
                                 <label className="form-label" htmlFor="ownername">Owner's Name</label>
+                                <p>Hi owner: {this.req}!</p>
                                 <input className="form-input"
                                     value={loggedIn.ownername}
                                     // onChange={this.handleInputChange}

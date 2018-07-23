@@ -37,10 +37,6 @@ class App extends Component {
     this.getUser()
   }
 
-  updateUser(userObject) {
-    this.setState(userObject)
-  }
-
   getUser() {
     axios.get('/api/pups/user').then(response => {
       console.log('Get user response: ')
@@ -79,6 +75,10 @@ class App extends Component {
         })
       }
     })
+  }
+
+  updateUser(userObject) {
+    this.setState(userObject)
   }
 
   render() {

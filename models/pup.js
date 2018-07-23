@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
-mongoose.promise = Promise
+mongoose.promise = Promise;
 
 const PupSchema = new Schema({
   ownername: { type: String, trim: true, required: true },
@@ -19,23 +19,23 @@ const PupSchema = new Schema({
 // Define schema methods
 PupSchema.methods = {
 	checkPassword: function (inputPassword) {
-		return bcrypt.compareSync(inputPassword, this.password)
+		return bcrypt.compareSync(inputPassword, this.password);
 	},
 	hashPassword: plainTextPassword => {
-		return bcrypt.hashSync(plainTextPassword, 10)
+		return bcrypt.hashSync(plainTextPassword, 10);
 	}
 }
 
 // Define hooks for pre-saving
 PupSchema.pre('save', function (next) {
 	if (!this.password) {
-		console.log('models/pup.js =======NO PASSWORD PROVIDED=======')
-		next()
+		console.log('models/pup.js =======NO PASSWORD PROVIDED=======');
+		next();
 	} else {
 		console.log('models/pup.js hashPassword in pre save');
 		
-		this.password = this.hashPassword(this.password)
-		next()
+		this.password = this.hashPassword(this.password);
+		next();
 	}
 })
 

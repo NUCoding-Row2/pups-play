@@ -31,6 +31,7 @@ router.post(
 
 //Adding this anywhere in the app screws up the view pups route - I get a Pups.map is not a function error
 // Updating per Olivia to use '/user' on the router
+
 //Matches with "api/pups/user"
 router.get('/user', (req, res, next) => {
   console.log('===== user!!======')
