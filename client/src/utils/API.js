@@ -36,9 +36,4 @@ export default {
     console.log("Login user");
     return axios.post("/api/pups/login", UniquePup);
   },
-  //Not currently functional, will try to implement
-  getCurrentUser: function() {
-    console.log("Getting currennt user info");
-    return axios.get("/api/pups/currentUser");
-  },
 };

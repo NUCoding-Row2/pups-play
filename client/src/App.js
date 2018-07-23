@@ -8,12 +8,14 @@ import Signup from './components/signup';
 import Login from './components/login';
 import ViewPups from './components/view-pups';
 import PupProfile from './components/view-profile';
+import UserProfile from './components/user-profile';
 
 class App extends Component {
   constructor() {
     super()
     this.state = {
       loggedIn: false,
+      // id: false,
       ownername: null,
       email: null,
       password: null,
@@ -45,9 +47,9 @@ class App extends Component {
       console.log(response.data)
       if (response.data.user) {
         console.log('Get User: There is a user saved in the server session: ')
-
         this.setState({
           loggedIn: true,
+          // id: response.data.user._id,
           ownername: response.data.user.ownername,
           email: response.data.user.email,
           password: response.data.user.password,
@@ -63,6 +65,7 @@ class App extends Component {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
+          // id: null,
           ownername: null,
           email: null,
           password: null,
@@ -87,7 +90,7 @@ class App extends Component {
           {/* greet user if logged in: */}
           {this.state.loggedIn &&
             <div>
-              <p>Hi owner: {this.state.ownername}!</p>
+              <p>Hi owner: {this.state.email}!</p>
               <p>Your dog's name is: "{this.state.pupname}"!</p>
             </div>
           }
@@ -102,6 +105,14 @@ class App extends Component {
                 updateUser={this.updateUser}
               />}
           />
+          <Route
+            path="/profile"
+            render={() =>
+              <UserProfile
+                updateUser={this.updateUser}
+                loggedIn={this.state.loggedIn}
+              />}
+            />
           <Route
             path="/signup"
             render={() =>

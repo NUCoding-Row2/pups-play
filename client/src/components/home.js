@@ -7,7 +7,7 @@ const image = {
 }
 
 const divMargin = {
-    "margin-top": "10px"
+    "marginTop": "10px"
 }
 
 class Home extends Component {

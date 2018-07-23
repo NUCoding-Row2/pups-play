@@ -29,6 +29,19 @@ router.post(
   }
 );
 
+//Adding this anywhere in the app screws up the view pups route - I get a Pups.map is not a function error
+// Updating per Olivia to use '/user' on the router
+//Matches with "api/pups/user"
+router.get('/user', (req, res, next) => {
+  console.log('===== user!!======')
+  console.log(req.user) //Right now this is coming back as undefined in the console.log but I can see that the user's info is available on every page when there's an active session...
+  if (req.user) {
+      res.json({ user: req.user })
+  } else {
+      res.json({ user: null })
+  }
+});
+
 // Matches with "/api/pups/logout"
 router.post('/logout', (req, res) => {
   if (req.user) {
@@ -38,17 +51,6 @@ router.post('/logout', (req, res) => {
       res.send({ msg: 'no user to log out' })
   }
 });
-
-//Adding this anywhere in the app screws up the view pups route - I get a Pups.map is not a function error
-// router.get('/', (req, res, next) => {
-//   console.log('===== user!!======')
-//   console.log(req.user)
-//   if (req.user) {
-//       res.json({ user: req.user })
-//   } else {
-//       res.json({ user: null })
-//   }
-// });
 
 // Matches with "/api/pups/location"
 router
