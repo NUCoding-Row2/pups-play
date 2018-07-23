@@ -172,7 +172,8 @@ class ViewPups extends Component {
                                         <div className="h5 panel-title">{pup.pupname}</div>
                                         <a href={"/Pups/" + pup._id} id={pup._id}>
                                             <figure className="avatar avatar-xl">
-                                                <img src={Avatar} alt="..." />
+                                                {/* <img src={Avatar} alt="..." /> */}
+                                                <img src={pup.photo} alt="..." />
                                             </figure>
                                         </a>
                                     </div>
