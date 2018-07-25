@@ -62,18 +62,18 @@ class Signup extends Component {
                     if (!res.data.error) {
                         console.log('successful signup')
                         this.setState({
-                            // redirectTo: '/login',
-                            ownername: "",
-                            email: "",
-                            password: "",
-                            pupname: "",
-                            breed: "",
-                            age: "",
-                            size: "",
-                            location: "",
-                            bio: "",
-                            photo: "",
-                            date: ""
+                            redirectTo: '/login',
+                            // ownername: "",
+                            // email: "",
+                            // password: "",
+                            // pupname: "",
+                            // breed: "",
+                            // age: "",
+                            // size: "",
+                            // location: "",
+                            // bio: "",
+                            // photo: "",
+                            // date: ""
                         })
                     } else {
                         console.log('username already taken')
