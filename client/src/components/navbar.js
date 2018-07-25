@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { Route, Link } from 'react-router-dom';
-import PawIcon from "../assets/images/paw.png";
+import PawIcon from "../assets/images/logo3.png";
 import axios from 'axios';
 
 const image = {
-    width: "35px",
+    width: "60px",
     "marginLeft": "3px",
-    "marginRight": "3px"
+    "marginRight": "3px",
+    "marginTop": "7px",
 }
 
 const text = {
