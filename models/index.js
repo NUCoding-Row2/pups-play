@@ -1,3 +1,4 @@
 module.exports = {
-    Pup: require("./pup")
+    Pup: require("./pup"),
+    Breed: require("./breed")
   };

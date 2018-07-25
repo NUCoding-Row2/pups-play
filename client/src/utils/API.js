@@ -1,6 +1,11 @@
 import axios from "axios";
 
 export default {
+  // Gets the breedlist for the drop down menus
+  getBreedList: function() {
+    console.log("Getting dog breed list");
+    return axios.get("/api/pups/breedList");
+  },
   // Gets all Pups
   getPups: function() {
     return axios.get("/api/pups");

@@ -10,6 +10,7 @@ const divMargin = {
 class ViewPups extends Component {
     state = {
         Pups: [],
+        BreedList: [],
         ownername: "",
         email: "",
         password: "",
@@ -25,12 +26,21 @@ class ViewPups extends Component {
 
     componentDidMount() {
         this.loadPups();
+        this.loadBreeds();
     }
 
     loadPups = () => {
         API.getPups()
             .then(res =>
                 this.setState({ Pups: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+            )
+            .catch(err => console.log(err));
+    };
+
+    loadBreeds = () => {
+        API.getBreedList()
+            .then(res =>
+                this.setState({ BreedList: res.data })
             )
             .catch(err => console.log(err));
     };
@@ -53,7 +63,13 @@ class ViewPups extends Component {
 
         API.getPups()
             .then(res =>
-                this.setState({ Pups: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+                this.setState({ Pups: res.data, BreedList: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+            )
+            .catch(err => console.log(err));
+
+        API.getBreedList()
+            .then(res =>
+                this.setState({ BreedList: res.data})
             )
             .catch(err => console.log(err));
     }
@@ -156,13 +172,12 @@ class ViewPups extends Component {
                 <option value="medium">Medium (26-50 lbs)</option>
                 <option value="large">Large (more than 50 lbs)</option>
             </select>
-            // <input className="form-input" type="text" name="size" placeholder="enter size" onChange={this.handleInputChange}></input>
         } else if (this.state.filterType == "breed") {
             searchInput = <select className="form-select" name="breed" onChange={this.handleInputChange}>
                 <option>Select a breed</option>
-                <option value="Dalmation">Dalmation</option>
-                <option value="Greyhound">Greyhound</option>
-                <option value="Labrador Retriever">Labrador Retriever</option>
+                {this.state.BreedList.map(breed => (
+                    <option key={breed._id} value={breed.breedname}>{breed.breedname}</option>
+                ))}
             </select>
         }
 
@@ -184,7 +199,6 @@ class ViewPups extends Component {
                                                 <div className="h5 panel-title">{pup.pupname}</div>
                                                 <a href={"/Pups/" + pup._id} id={pup._id}>
                                                     <figure className="avatar avatar-xl">
-                                                        {/*<img src={Avatar} alt="..." />*/}
                                                         <img src={pup.photo} alt="..." />
                                                     </figure>
                                                 </a>

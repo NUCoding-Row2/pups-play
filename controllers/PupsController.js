@@ -15,11 +15,19 @@ cloudinary.config({
 
 // Defining methods for the PupsController
 module.exports = {
+  findBreeds: function (req, res, next) {
+    console.log("Retrieved Breeds from Breeds Database Collection on PupsController.js");
+    db.Breed
+      .find(req.query)
+      // .sort({ breedname: asc })
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
   findAll: function (req, res, next) {
     console.log("Retrieved ALL Dogs from Database on PupsController.js");
     db.Pup
       .find(req.query)
-      .sort({ date: -1 })
+      .sort({ date: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

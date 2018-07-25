@@ -7,7 +7,7 @@ import API from '../utils/API';
 
 class Signup extends Component {
     state = {
-        // Pups: [],
+        BreedList: [],
         ownername: "",
         email: "",
         password: "",
@@ -28,8 +28,22 @@ class Signup extends Component {
         this.fileInput = React.createRef();
     }
 
+    componentDidMount() {
+        this.loadBreeds();
+    }
+
+    loadBreeds = () => {
+        API.getBreedList()
+            .then(res =>
+                this.setState({ BreedList: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+            )
+            .catch(err => console.log(err));
+    };
+
     handleInputChange = event => {
         const { name, value } = event.target;
+        console.log(name);
+        console.log(value);
         this.setState({
             [name]: value
         });
@@ -127,12 +141,18 @@ class Signup extends Component {
                                 placeholder="Pup's Name (required)"
                             />
                             <label className="form-label" htmlFor="breed">Breed</label>
-                            <input className="form-input"
+                            <select className="form-select" name="breed" onChange={this.handleInputChange}>
+                                <option>Select a breed</option>
+                                {this.state.BreedList.map(breed => (
+                                    <option key={breed._id} value={breed.breedname}>{breed.breedname}</option>
+                                ))}
+                            </select>
+                            {/*<input className="form-input"
                                 value={this.state.breed}
                                 onChange={this.handleInputChange}
                                 name="breed"
                                 placeholder="Pup's breed (required)"
-                            />
+                            />*/}
                             <label className="form-label" htmlFor="age">Age</label>
                             <input className="form-input"
                                 value={this.state.age}
@@ -141,12 +161,18 @@ class Signup extends Component {
                                 placeholder="Pup's age (required)"
                             />
                             <label className="form-label" htmlFor="size">Size</label>
-                            <input className="form-input"
+                            <select className="form-select" name="size" onChange={this.handleInputChange}>
+                                <option>Select a size</option>
+                                <option value="small">Small (under 25 lbs)</option>
+                                <option value="medium">Medium (26-50 lbs)</option>
+                                <option value="large">Large (more than 50 lbs)</option>
+                            </select>
+                            {/*<input className="form-input"
                                 value={this.state.size}
                                 onChange={this.handleInputChange}
                                 name="size"
                                 placeholder="Pup's size (required) - small, medium, large"
-                            />
+                            />*/}
                             <label className="form-label" htmlFor="zipCode">Location</label>
                             <input className="form-input"
                                 value={this.state.location}
