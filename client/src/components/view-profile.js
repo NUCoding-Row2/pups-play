@@ -54,6 +54,10 @@ class PupProfile extends Component {
                                     <br />
                                     Breed: {this.state.Pup.breed}
                                     <br />
+                                    Sex: {this.state.Pup.sex}
+                                    <br />
+                                    Spayed/Neutered: {this.state.Pup.spayNeutered}
+                                    <br />
                                     Size: {this.state.Pup.size}
                                     <br />
                                     Location: {this.state.Pup.location}

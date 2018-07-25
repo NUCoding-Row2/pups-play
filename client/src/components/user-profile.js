@@ -121,6 +121,20 @@ class UserProfile extends Component {
                                     name="breed"
                                     placeholder="Pup's breed (required)"
                                 />
+                                <label className="form-label" htmlFor="sex">Sex</label>
+                                <input className="form-input"
+                                    value={loggedInUser.sex}
+                                    // onChange={this.handleInputChange}
+                                    name="sex"
+                                    placeholder="Pup's breed (required)"
+                                />
+                                <label className="form-label" htmlFor="sex">Spayed/Neutered</label>
+                                <input className="form-input"
+                                    value={loggedInUser.spayNeutered}
+                                    // onChange={this.handleInputChange}
+                                    name="spayNeutered"
+                                    placeholder="Pup's breed (required)"
+                                />
                                 <label className="form-label" htmlFor="age">Age</label>
                                 <input className="form-input"
                                     value={loggedInUser.age}

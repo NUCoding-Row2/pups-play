@@ -16,6 +16,8 @@ class ViewPups extends Component {
         password: "",
         pupname: "",
         breed: "",
+        sex: "",
+        spayNeutered: "",
         age: "",
         size: "",
         location: "",
@@ -32,7 +34,7 @@ class ViewPups extends Component {
     loadPups = () => {
         API.getPups()
             .then(res =>
-                this.setState({ Pups: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+                this.setState({ Pups: res.data, ownername: "", pupname: "", breed: "", sex: "", spayNeutered: "", age: "", size: "", bio: "", photo: "" })
             )
             .catch(err => console.log(err));
     };
@@ -63,13 +65,13 @@ class ViewPups extends Component {
 
         API.getPups()
             .then(res =>
-                this.setState({ Pups: res.data, BreedList: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+                this.setState({ Pups: res.data, BreedList: res.data, ownername: "", pupname: "", breed: "", sex: "", spayNeutered: "", age: "", size: "", bio: "", photo: "" })
             )
             .catch(err => console.log(err));
 
         API.getBreedList()
             .then(res =>
-                this.setState({ BreedList: res.data})
+                this.setState({ BreedList: res.data })
             )
             .catch(err => console.log(err));
     }
@@ -89,6 +91,8 @@ class ViewPups extends Component {
                         ownername: "",
                         pupname: "",
                         breed: "",
+                        sex: "",
+                        spayNeutered: "",
                         age: "",
                         size: "",
                         bio: "",
@@ -107,6 +111,8 @@ class ViewPups extends Component {
                         ownername: "",
                         pupname: "",
                         breed: "",
+                        sex: "",
+                        spayNeutered: "",
                         age: "",
                         size: "",
                         bio: "",
@@ -125,6 +131,8 @@ class ViewPups extends Component {
                         ownername: "",
                         pupname: "",
                         breed: "",
+                        sex: "",
+                        spayNeutered: "",
                         age: "",
                         size: "",
                         bio: "",
@@ -144,6 +152,8 @@ class ViewPups extends Component {
                         ownername: "",
                         pupname: "",
                         breed: "",
+                        sex: "",
+                        spayNeutered: "",
                         age: "",
                         size: "",
                         bio: "",
@@ -209,6 +219,10 @@ class ViewPups extends Component {
                                                 Age: {pup.age}
                                                 <br />
                                                 Breed: {pup.breed}
+                                                <br />
+                                                Sex: {pup.sex}
+                                                <br />
+                                                Spayed/Neutered: {pup.spayNeutered}
                                                 <br />
                                                 Size: {pup.size}
                                                 <br />

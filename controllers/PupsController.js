@@ -136,6 +136,8 @@ module.exports = {
           password: req.body.password,
           pupname: req.body.pupname,
           breed: req.body.breed,
+          sex: req.body.sex,
+          spayNeutered: req.body.spayNeutered,
           age: req.body.age,
           size: req.body.size,
           location: req.body.location,

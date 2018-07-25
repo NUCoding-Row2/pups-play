@@ -13,6 +13,8 @@ class Signup extends Component {
         password: "",
         pupname: "",
         breed: "",
+        sex: "",
+        spayNeutered: "",
         age: "",
         size: "",
         location: "",
@@ -35,7 +37,7 @@ class Signup extends Component {
     loadBreeds = () => {
         API.getBreedList()
             .then(res =>
-                this.setState({ BreedList: res.data, ownername: "", pupname: "", breed: "", age: "", size: "", bio: "", photo: "" })
+                this.setState({ BreedList: res.data, ownername: "", pupname: "", breed: "", sex: "", spayNeutered: "", age: "", size: "", bio: "", photo: "" })
             )
             .catch(err => console.log(err));
     };
@@ -62,6 +64,8 @@ class Signup extends Component {
             pupdata.set('password', this.state.password);
             pupdata.set('pupname', this.state.pupname);
             pupdata.set('breed', this.state.breed);
+            pupdata.set('sex', this.state.sex);
+            pupdata.set('spayNeutered', this.state.spayNeutered);
             pupdata.set('age', this.state.age);
             pupdata.set('size', this.state.size);
             pupdata.set('location', this.state.location);
@@ -147,12 +151,21 @@ class Signup extends Component {
                                     <option key={breed._id} value={breed.breedname}>{breed.breedname}</option>
                                 ))}
                             </select>
-                            {/*<input className="form-input"
-                                value={this.state.breed}
-                                onChange={this.handleInputChange}
-                                name="breed"
-                                placeholder="Pup's breed (required)"
-                            />*/}
+                            
+                            <label className="form-label" htmlFor="sex">Sex</label>
+                            <select className="form-select" name="sex" onChange={this.handleInputChange}>
+                                <option>Select a gender</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+
+                            <label className="form-label" htmlFor="spayNeutered">Has your pup been spayed/neutered?</label>
+                            <select className="form-select" name="spayNeutered" onChange={this.handleInputChange}>
+                                <option>Select a response</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+
                             <label className="form-label" htmlFor="age">Age</label>
                             <input className="form-input"
                                 value={this.state.age}
@@ -167,12 +180,7 @@ class Signup extends Component {
                                 <option value="medium">Medium (26-50 lbs)</option>
                                 <option value="large">Large (more than 50 lbs)</option>
                             </select>
-                            {/*<input className="form-input"
-                                value={this.state.size}
-                                onChange={this.handleInputChange}
-                                name="size"
-                                placeholder="Pup's size (required) - small, medium, large"
-                            />*/}
+                            
                             <label className="form-label" htmlFor="zipCode">Location</label>
                             <input className="form-input"
                                 value={this.state.location}
@@ -180,6 +188,7 @@ class Signup extends Component {
                                 name="location"
                                 placeholder="Zip code (required)"
                             />
+
                             <label className="form-label" htmlFor="picture">Your Pup's Photo</label>
                             <input className="form-input"
                                 type="file"
@@ -189,12 +198,13 @@ class Signup extends Component {
                                 name="picture"
                                 placeholder="Picture (required)"
                             />
-                            <br />
+                            
+                            <label className="form-label" htmlFor="picture">Your Pup's Bio</label>
                             <textarea className="form-input" htmlFor="bio"
                                 value={this.state.bio}
                                 onChange={this.handleInputChange}
                                 name="bio"
-                                placeholder="bio (Optional)"
+                                placeholder="bio (optional) - Tell us more about your pup!"
                             ></textarea>
                             <br />
                             <button className="btn btn-lg" onClick={this.handleFormSubmit}>
