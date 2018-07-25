@@ -3,21 +3,21 @@ import API from '../utils/API';
 // import { Link } from "react-router-dom";
 
 class UserProfile extends Component {
-    constructor() {
-        super()
-        this.state = {
+    constructor(props) {
+        super(props)
+        // this.state = {
             // Pups: [],
-            ownername: "",
-            email: "",
-            password: "",
-            pupname: "",
-            breed: "",
-            age: "",
-            size: "",
-            location: "",
-            bio: "",
-            date: ""
-        }
+            // ownername: "",
+            // email: "",
+            // password: "",
+            // pupname: "",
+            // breed: "",
+            // age: "",
+            // size: "",
+            // location: "",
+            // bio: "",
+            // date: ""
+        // }
         // this.handleFormSubmit = this.handleFormSubmit.bind(this)
         // this.handleInputChange = this.handleInputChange.bind(this)
     }
@@ -74,6 +74,7 @@ class UserProfile extends Component {
 
     render() {
         const loggedIn = this.props.loggedIn;
+        const loggedInUser = this.props.loggedInUser;
         console.log('navbar render, props: ')
         console.log(this.props);
 
@@ -85,23 +86,22 @@ class UserProfile extends Component {
                         <div className="columns">
                             <form className="form-group col-6 col-mx-auto pt-2">
                                 <label className="form-label" htmlFor="ownername">Owner's Name</label>
-                                <p>Hi owner: {this.req}!</p>
                                 <input className="form-input"
-                                    value={loggedIn.ownername}
+                                    value={loggedInUser.ownername}
                                     // onChange={this.handleInputChange}
                                     name="ownername"
                                     placeholder="Owner's Name (required)"
                                 />
                                 <label className="form-label" htmlFor="email">Email</label>
                                 <input className="form-input"
-                                    value={this.props.email}
+                                    value={loggedInUser.email}
                                     // onChange={this.handleInputChange}
                                     name="email"
                                     placeholder="Email (required)"
                                 />
                                 <label className="form-label" htmlFor="password">Password</label>
                                 <input className="form-input"
-                                    value={this.props.password}
+                                    value={loggedInUser.password}
                                     type="password"
                                     // onChange={this.handleInputChange}
                                     name="password"
@@ -109,42 +109,42 @@ class UserProfile extends Component {
                                 />
                                 <label className="form-label" htmlFor="pupName">Pup's Name</label>
                                 <input className="form-input"
-                                    value={this.props.pupname}
+                                    value={loggedInUser.pupname}
                                     // onChange={this.handleInputChange}
                                     name="pupname"
                                     placeholder="Pup's Name (required)"
                                 />
                                 <label className="form-label" htmlFor="breed">Breed</label>
                                 <input className="form-input"
-                                    value={this.props.breed}
+                                    value={loggedInUser.breed}
                                     // onChange={this.handleInputChange}
                                     name="breed"
                                     placeholder="Pup's breed (required)"
                                 />
                                 <label className="form-label" htmlFor="age">Age</label>
                                 <input className="form-input"
-                                    value={this.props.age}
+                                    value={loggedInUser.age}
                                     // onChange={this.handleInputChange}
                                     name="age"
                                     placeholder="Pup's age (required)"
                                 />
                                 <label className="form-label" htmlFor="size">Size</label>
                                 <input className="form-input"
-                                    value={this.props.size}
+                                    value={loggedInUser.size}
                                     // onChange={this.handleInputChange}
                                     name="size"
                                     placeholder="Pup's size (required) - small, medium, large"
                                 />
                                 <label className="form-label" htmlFor="zipCode">Location</label>
                                 <input className="form-input"
-                                    value={this.props.location}
+                                    value={loggedInUser.location}
                                     // onChange={this.handleInputChange}
                                     name="location"
                                     placeholder="Zip code (required)"
                                 />
                                 <br />
                                 <textarea className="form-input" htmlFor="bio"
-                                    value={this.props.bio}
+                                    value={loggedInUser.bio}
                                     // onChange={this.handleInputChange}
                                     name="bio"
                                     placeholder="bio (Optional)"
