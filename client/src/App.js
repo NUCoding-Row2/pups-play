@@ -15,18 +15,7 @@ class App extends Component {
     super()
     this.state = {
       loggedIn: false,
-      // id: false,
-      ownername: null,
-      email: null,
-      password: null,
-      pupname: null,
-      breed: null,
-      age: null,
-      size: null,
-      location: null,
-      bio: null,
-      photo: null,
-      date: null
+      loggedInUser: {},
     }
 
     this.getUser = this.getUser.bind(this)
@@ -46,35 +35,13 @@ class App extends Component {
         console.log('Get User: There is a user saved in the server session: ')
         this.setState({
           loggedIn: true,
-          // id: response.data.user._id,
-          ownername: response.data.user.ownername,
-          email: response.data.user.email,
-          password: response.data.user.password,
-          pupname: response.data.user.pupname,
-          breed: response.data.user.breed,
-          age: response.data.user.age,
-          size: response.data.user.size,
-          location: response.data.user.location,
-          bio: response.data.user.bio,
-          photo: response.data.user.photo,
-          date: response.data.user.date,
+          loggedInUser: response.data.user,
         })
       } else {
         console.log('Get user: no user');
         this.setState({
           loggedIn: false,
-          // id: null,
-          ownername: null,
-          email: null,
-          password: null,
-          pupname: null,
-          breed: null,
-          age: null,
-          size: null,
-          location: null,
-          bio: null,
-          photo: null,
-          date: null
+          loggedInUser: {},
         })
       }
     })
@@ -89,14 +56,9 @@ class App extends Component {
       <Router>
         <div className="App">
 
-          <Navbar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          {/* greet user if logged in: */}
-          {this.state.loggedIn &&
-            <div>
-              <p>Hi owner: {this.state.email}!</p>
-              <p>Your dog's name is: "{this.state.pupname}"!</p>
-            </div>
-          }
+          <Navbar updateUser={this.updateUser} 
+          loggedIn={this.state.loggedIn} 
+          />
           {/* Routes to different components */}
           <Route
             exact path="/"
@@ -119,6 +81,7 @@ class App extends Component {
               <UserProfile
                 updateUser={this.updateUser}
                 loggedIn={this.state.loggedIn}
+                loggedInUser={this.state.loggedInUser}
               />}
           />
           <Route
@@ -143,20 +106,5 @@ class App extends Component {
     );
   }
 }
-
-// const App = () => (
-//   <Router>
-//     <div>
-//       <Navbar />
-//       <Switch>
-//         <Route exact path="/" component={Home} />
-//         <Route exact path="/signup" component={Signup} />
-//         <Route exact path="/login" component={Login} />
-//         <Route exact path="/pups" component={ViewPups} />
-//         <Route exact path="/pups/:id" component={PupProfile} />
-//       </Switch>
-//     </div>
-//   </Router>
-// );
 
 export default App;

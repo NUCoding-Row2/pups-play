@@ -7,12 +7,14 @@ import API from '../utils/API';
 
 class Signup extends Component {
     state = {
-        // Pups: [],
+        BreedList: [],
         ownername: "",
         email: "",
         password: "",
         pupname: "",
         breed: "",
+        sex: "",
+        spayNeutered: "",
         age: "",
         size: "",
         location: "",
@@ -28,8 +30,22 @@ class Signup extends Component {
         this.fileInput = React.createRef();
     }
 
+    componentDidMount() {
+        this.loadBreeds();
+    }
+
+    loadBreeds = () => {
+        API.getBreedList()
+            .then(res =>
+                this.setState({ BreedList: res.data, ownername: "", pupname: "", breed: "", sex: "", spayNeutered: "", age: "", size: "", bio: "", photo: "" })
+            )
+            .catch(err => console.log(err));
+    };
+
     handleInputChange = event => {
         const { name, value } = event.target;
+        console.log(name);
+        console.log(value);
         this.setState({
             [name]: value
         });
@@ -48,6 +64,8 @@ class Signup extends Component {
             pupdata.set('password', this.state.password);
             pupdata.set('pupname', this.state.pupname);
             pupdata.set('breed', this.state.breed);
+            pupdata.set('sex', this.state.sex);
+            pupdata.set('spayNeutered', this.state.spayNeutered);
             pupdata.set('age', this.state.age);
             pupdata.set('size', this.state.size);
             pupdata.set('location', this.state.location);
@@ -62,18 +80,18 @@ class Signup extends Component {
                     if (!res.data.error) {
                         console.log('successful signup')
                         this.setState({
-                            // redirectTo: '/login',
-                            ownername: "",
-                            email: "",
-                            password: "",
-                            pupname: "",
-                            breed: "",
-                            age: "",
-                            size: "",
-                            location: "",
-                            bio: "",
-                            photo: "",
-                            date: ""
+                            redirectTo: '/login',
+                            // ownername: "",
+                            // email: "",
+                            // password: "",
+                            // pupname: "",
+                            // breed: "",
+                            // age: "",
+                            // size: "",
+                            // location: "",
+                            // bio: "",
+                            // photo: "",
+                            // date: ""
                         })
                     } else {
                         console.log('username already taken')
@@ -94,7 +112,7 @@ class Signup extends Component {
         } else {
             return (
                 <div className="container grid-md">
-                    <h3 className="text-center mt-2">Sign Up</h3>
+                    <h1 className="text-center mt-2">Sign Up</h1>
                     <div className="columns">
                         <form className="form-group col-6 col-mx-auto pt-2">
                             <label className="form-label" htmlFor="ownername">Owner's Name</label>
@@ -110,7 +128,9 @@ class Signup extends Component {
                                 onChange={this.handleInputChange}
                                 name="email"
                                 placeholder="Email (required)"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,14}$"
                             />
+                            <p class="form-input-hint">The email is invalid.</p>
                             <label className="form-label" htmlFor="password">Password</label>
                             <input className="form-input"
                                 value={this.state.password}
@@ -118,7 +138,9 @@ class Signup extends Component {
                                 onChange={this.handleInputChange}
                                 name="password"
                                 placeholder="Password (required)"
+                                pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
                             />
+                            <p class="form-input-hint">Password must be 8 or more characters that are of at least one number, one uppercase and lowercase letter.</p>
                             <label className="form-label" htmlFor="pupName">Pup's Name</label>
                             <input className="form-input"
                                 value={this.state.pupname}
@@ -127,12 +149,27 @@ class Signup extends Component {
                                 placeholder="Pup's Name (required)"
                             />
                             <label className="form-label" htmlFor="breed">Breed</label>
-                            <input className="form-input"
-                                value={this.state.breed}
-                                onChange={this.handleInputChange}
-                                name="breed"
-                                placeholder="Pup's breed (required)"
-                            />
+                            <select className="form-select" name="breed" onChange={this.handleInputChange}>
+                                <option>Select a breed</option>
+                                {this.state.BreedList.map(breed => (
+                                    <option key={breed._id} value={breed.breedname}>{breed.breedname}</option>
+                                ))}
+                            </select>
+                            
+                            <label className="form-label" htmlFor="sex">Sex</label>
+                            <select className="form-select" name="sex" onChange={this.handleInputChange}>
+                                <option>Select a gender</option>
+                                <option value="female">Female</option>
+                                <option value="male">Male</option>
+                            </select>
+
+                            <label className="form-label" htmlFor="spayNeutered">Has your pup been spayed/neutered?</label>
+                            <select className="form-select" name="spayNeutered" onChange={this.handleInputChange}>
+                                <option>Select a response</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+
                             <label className="form-label" htmlFor="age">Age</label>
                             <input className="form-input"
                                 value={this.state.age}
@@ -141,12 +178,13 @@ class Signup extends Component {
                                 placeholder="Pup's age (required)"
                             />
                             <label className="form-label" htmlFor="size">Size</label>
-                            <input className="form-input"
-                                value={this.state.size}
-                                onChange={this.handleInputChange}
-                                name="size"
-                                placeholder="Pup's size (required) - small, medium, large"
-                            />
+                            <select className="form-select" name="size" onChange={this.handleInputChange}>
+                                <option>Select a size</option>
+                                <option value="small">Small (under 25 lbs)</option>
+                                <option value="medium">Medium (26-50 lbs)</option>
+                                <option value="large">Large (more than 50 lbs)</option>
+                            </select>
+                            
                             <label className="form-label" htmlFor="zipCode">Location</label>
                             <input className="form-input"
                                 value={this.state.location}
@@ -154,6 +192,7 @@ class Signup extends Component {
                                 name="location"
                                 placeholder="Zip code (required)"
                             />
+
                             <label className="form-label" htmlFor="picture">Your Pup's Photo</label>
                             <input className="form-input"
                                 type="file"
@@ -163,12 +202,13 @@ class Signup extends Component {
                                 name="picture"
                                 placeholder="Picture (required)"
                             />
-                            <br />
+                            
+                            <label className="form-label" htmlFor="picture">Your Pup's Bio</label>
                             <textarea className="form-input" htmlFor="bio"
                                 value={this.state.bio}
                                 onChange={this.handleInputChange}
                                 name="bio"
-                                placeholder="bio (Optional)"
+                                placeholder="bio (optional) - Tell us more about your pup!"
                             ></textarea>
                             <br />
                             <button className="btn btn-lg" onClick={this.handleFormSubmit}>

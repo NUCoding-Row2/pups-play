@@ -122,6 +122,9 @@ router
   .route("/breed")
   .post(PupsController.findByBreed);
 
+// Matches with "/api/pups/breedList"
+router.route("/breedList")
+  .get(PupsController.findBreeds);
 
 // Matches with "/api/pups"
 router.route("/")

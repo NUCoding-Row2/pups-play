@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Redirect } from 'react-router-dom';
 import { Route, Link } from 'react-router-dom';
-import PawIcon from "../assets/images/paw.png";
+import PawIcon from "../assets/images/logo3.png";
 import axios from 'axios';
 
 const image = {
-    width: "35px",
+    width: "60px",
     "marginLeft": "3px",
-    "marginRight": "3px"
+    "marginRight": "3px",
+    "marginTop": "7px",
 }
 
 const text = {
@@ -28,7 +29,7 @@ class Navbar extends Component {
     logout(event) {
         event.preventDefault();
         console.log('logging out');
-        
+
         axios.post('/api/pups/logout').then(response => {
             console.log(response.data)
             if (response.status === 200) {
@@ -47,8 +48,8 @@ class Navbar extends Component {
                 })
             }
         }).catch(error => {
-            console.log('Logout error')
-        })
+                console.log('Logout error')
+            })
     }
 
 
@@ -62,25 +63,19 @@ class Navbar extends Component {
                 <header className="navbar">
                     {loggedIn ? (
                         <section className="navbar-section">
-                        <a href="/logout" className="btn btn-link" style={text} onClick={this.logout}>Logout</a>
-                        {/*<a href="/signup" className="btn btn-link" style={text}>Sign Up</a>*/}
-                        {/*<a href="/login" className="btn btn-link" style={text}>Login</a>*/}
-                        <a href="/profile" className="btn btn-link" style={text}>Your Profile</a>
-                        <a href="/pups" className="btn btn-link" style={text}>View Pups</a>
+                            <a href="/logout" className="btn btn-link" style={text} onClick={this.logout}>Logout</a>
+                            <a href="/profile" className="btn btn-link" style={text}>Your Profile</a>
+                            <a href="/pups" className="btn btn-link" style={text}>View Pups</a>
                         </section>
                     ) : (
-                        <section className="navbar-section">
-                        {/*<a href="/logout" className="btn btn-link" style={text} onClick={this.logout}>Logout</a>*/}
-                        <a href="/signup" className="btn btn-link" style={text}>Sign Up</a>
-                        <a href="/login" className="btn btn-link" style={text}>Login</a>
-                        {/*<a href="/profile" className="btn btn-link" style={text}>Your Profile</a>*/}
-                        {/*<a href="/pups" className="btn btn-link" style={text}>View Pups</a>*/}
-                        </section>
-                    )}
-                    
+                            <section className="navbar-section">
+                                <a href="/signup" className="btn btn-link" style={text}>Sign Up</a>
+                                <a href="/login" className="btn btn-link" style={text}>Login</a>
+                            </section>
+                        )}
+
                     <section className="navbar-center">
                         <h4 style={logoText}>Pups</h4>
-                        {/*<a href="/"><img style={image} src="./assets/images/paw.png" alt="" /></a>*/}
                         <a href="/"><img style={image} src={PawIcon} alt="..." /></a>
                         <h4 style={logoText}>Play</h4>
                     </section>
