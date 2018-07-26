@@ -112,7 +112,7 @@ class Signup extends Component {
                                 placeholder="Email (required)"
                                 pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,14}$"
                             />
-                            <p class="form-input-hint">The email is invalid.</p>
+                            <p className="form-input-hint">The email is invalid.</p>
                             <label className="form-label" htmlFor="password">Password</label>
                             <input className="form-input"
                                 value={this.state.password}
@@ -122,7 +122,7 @@ class Signup extends Component {
                                 placeholder="Password (required)"
                                 pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
                             />
-                            <p class="form-input-hint">Password must be 8 or more characters that are of at least one number, one uppercase and lowercase letter.</p>
+                            <p className="form-input-hint">Password must be 8 or more characters that are of at least one number, one uppercase and lowercase letter.</p>
                             <label className="form-label" htmlFor="pupName">Pup's Name</label>
                             <input className="form-input"
                                 value={this.state.pupname}

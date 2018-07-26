@@ -33,52 +33,52 @@ class Login extends Component {
         event.preventDefault();
         console.log('handleSubmit');
 
-        API.login({
-            // ownername: this.state.ownername,
-            email: this.state.email,
-            password: this.state.password,
-            // pupname: this.state.pupname,
-            // breed: this.state.breed,
-            // age: this.state.age,
-            // size: this.state.size,
-            // location: this.state.location,
-            // bio: this.state.bio,
-            // date: this.state.date
-        })
-            .then(res => {
-                console.log('login response: ')
-                console.log(res)
-                if (res.status === 200) {
-                    // update App.js state
-                    this.props.updateUser({
-                        loggedIn: true,
-                        ownername: this.state.ownername,
-                        email: this.state.email,
-                        password: this.state.password,
-                        pupname: this.state.pupname,
-                        breed: this.state.breed,
-                        age: this.state.age,
-                        size: this.state.size,
-                        location: this.state.location,
-                        bio: this.state.bio,
-                        date: this.state.date
-                    })
-                    // update the state to redirect to home
-                    this.setState({
-                        redirectTo: '/pups'
-                    })
-                }
-            }).catch(error => {
-                console.log('login error: ')
-                console.log(error);
+    //     API.login({
+    //         // ownername: this.state.ownername,
+    //         email: this.state.email,
+    //         password: this.state.password,
+    //         // pupname: this.state.pupname,
+    //         // breed: this.state.breed,
+    //         // age: this.state.age,
+    //         // size: this.state.size,
+    //         // location: this.state.location,
+    //         // bio: this.state.bio,
+    //         // date: this.state.date
+    //     })
+    //         .then(res => {
+    //             console.log('login response: ')
+    //             console.log(res)
+    //             if (res.status === 200) {
+    //                 // update App.js state
+    //                 this.props.updateUser({
+    //                     loggedIn: true,
+    //                     ownername: this.state.ownername,
+    //                     email: this.state.email,
+    //                     password: this.state.password,
+    //                     pupname: this.state.pupname,
+    //                     breed: this.state.breed,
+    //                     age: this.state.age,
+    //                     size: this.state.size,
+    //                     location: this.state.location,
+    //                     bio: this.state.bio,
+    //                     date: this.state.date
+    //                 })
+    //                 // update the state to redirect to home
+    //                 this.setState({
+    //                     redirectTo: '/pups'
+    //                 })
+    //             }
+    //         }).catch(error => {
+    //             console.log('login error: ')
+    //             console.log(error);
 
-            })
+    //         })
     };
 
     render() {
-        if (this.state.redirectTo) {
-            return <Redirect to={{ pathname: this.state.redirectTo }} />
-        } else {
+        // if (this.state.redirectTo) {
+        //     return <Redirect to={{ pathname: this.state.redirectTo }} />
+        // } else {
             return (
                 <div className="container grid-md">
                     <h1 className="text-center mt-2">Log In</h1>
@@ -95,7 +95,7 @@ class Login extends Component {
                     </div>
                 </div>
             );
-        }
+        // }
     }
 }
 

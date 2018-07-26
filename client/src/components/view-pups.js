@@ -166,13 +166,13 @@ class ViewPups extends Component {
             </select>
         }
 
-        const loggedIn = this.props.loggedIn;
-        console.log('navbar render, props: ')
-        console.log(this.props);
+        // const loggedIn = this.props.loggedIn;
+        // console.log('navbar render, props: ')
+        // console.log(this.props);
 
         return (
             <div>
-                {loggedIn ? (
+                {/*{loggedIn ? ( */}
                     <div className="container grid-md">
                         <h3 className="text-center mt-2">Pups That Want to Play</h3>
                         <div className="columns">
@@ -226,13 +226,13 @@ class ViewPups extends Component {
                             </div>
                         </div>
                     </div>
-                ) : (
+                {/* ) : ( 
                         <div className="container grid-md">
                         <h1 className="hero__title">Oops!</h1>
                         <img src="../assets/images/sad-dog.png"/>
                             <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
                         </div>
-                    )}
+                    )} */}
             </div>
 
         );
