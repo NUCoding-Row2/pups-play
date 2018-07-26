@@ -172,7 +172,9 @@ class UserProfile extends Component {
                     </div>
                 ) : (
                         <div className="container grid-md">
-                            <h3 className="text-center mt-2">Sorry You Don't Have Permission to View This Page!</h3>
+                        <h1 className="hero__title">Oops!</h1>
+                        <img src="../assets/images/sad-dog.png"/>
+                            <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
                         </div>
                     )}
 
