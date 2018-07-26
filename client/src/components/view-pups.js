@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import API from '../utils/API';
 // import { Link } from "react-router-dom";
 import Avatar from "../assets/images/winking-dog.png"
+import SadDog from "../assets/images/sad-dog.png"
 
 const divMargin = {
     margin: "5px"
+}
+
+const imageSize = {
+    width: "200px"
 }
 
 class ViewPups extends Component {
@@ -255,9 +260,9 @@ class ViewPups extends Component {
                         </div>
                     </div>
                 ) : (
-                        <div className="container grid-md">
+                        <div className="container grid-md center">
                         <h1 className="hero__title">Oops!</h1>
-                        <img src="../assets/images/sad-dog.png"/>
+                        <img src={SadDog} style={imageSize}/>
                             <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
                         </div>
                     )}

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 // import { Link } from "react-router-dom";
+import SadDog from "../assets/images/sad-dog.png";
+
+const imageSize = {
+    width: "200px"
+}
 
 class UserProfile extends Component {
     constructor(props) {
@@ -173,7 +178,7 @@ class UserProfile extends Component {
                 ) : (
                         <div className="container grid-md">
                         <h1 className="hero__title">Oops!</h1>
-                        <img src="../assets/images/sad-dog.png"/>
+                        <img src={SadDog} style={imageSize}/>
                             <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
                         </div>
                     )}
