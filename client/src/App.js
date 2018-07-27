@@ -92,15 +92,16 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
               />}
           />
-          <Route exact path="/pups/:id" component={PupProfile} />
-          {/*<Route
+          {/*<Route exact path="/pups/:id" component={PupProfile} />*/}
+          <Route
             exact path="/pups/:id"
-            render={() =>
+            render={({ match }) =>
               <PupProfile
-                // updateUser={this.updateUser}
-                // loggedIn={this.state.loggedIn}
+                updateUser={this.updateUser}
+                loggedIn={this.state.loggedIn}
+                match={match}
               />}
-            />*/}
+            />
         </div>
       </Router>
     );
