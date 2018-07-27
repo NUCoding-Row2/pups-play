@@ -152,4 +152,20 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  addMessage: function (req, res) {
+    console.log("PupsController.js: Request to add message to Mongo: ", req.body);
+        const newMessage = {
+          username: req.body.username,
+          message: req.body.message,
+          fromMe: req.body.fromMe,
+          messageTo: req.body.messageTo,
+          messageFrom: req.body.messageFrom,
+          date: req.body.date
+        };
+        console.log("New Pup Object:", newPup);
+        db.Note
+          .create(newMessage)
+          .then(dbModel => res.json(dbModel))
+          .catch(err => res.status(422).json(err));
+  },
 };

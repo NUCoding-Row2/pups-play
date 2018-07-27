@@ -136,4 +136,11 @@ router
   .put(PupsController.update)
   .delete(PupsController.remove);
 
+// Matches with "/api/pups/chat/:id"
+router
+  .route("/chat/:id")
+  .get(PupsController.findById)
+  .put(PupsController.update)
+  .post(PupsController.addMessage)
+
 module.exports = router;

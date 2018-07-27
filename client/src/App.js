@@ -9,6 +9,7 @@ import Login from './components/login';
 import ViewPups from './components/view-pups';
 import PupProfile from './components/view-profile';
 import UserProfile from './components/user-profile';
+import ChatApp from './components/ChatApp';
 
 class App extends Component {
   constructor() {
@@ -144,7 +145,16 @@ class App extends Component {
                 // loggedIn={this.state.loggedIn}
               />}
             />*/}
-        </div>
+        <Route
+            exact path="/messages"
+            render={() =>
+              <ChatApp
+                updateUser={this.updateUser}
+                loggedIn={this.state.loggedIn}
+                loggedInUser={this.state.loggedInUser}
+              />}
+          />
+      </div>
       </Router>
     );
   }

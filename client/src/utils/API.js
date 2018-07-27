@@ -52,4 +52,13 @@ export default {
     console.log("Login user");
     return axios.post("/api/pups/login", UniquePup);
   },
+  addMessage: function(message) {
+    console.log("Adding new message to chat");
+    // return axios.post("/api/pups/", PupData)
+    return axios({
+      method: 'post',
+      url: "/api/pups/chat/:id",
+      data: message
+    });
+  },
 };
