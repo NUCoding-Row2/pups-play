@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 // import { Link } from "react-router-dom";
-import Avatar from "../assets/images/winking-dog.png"
+import Avatar from "../assets/images/winking-dog.png";
+import SadDog from "../assets/images/sad-dog.png";
 
 const flexStyle = {
     "justifyContent": "center",
+}
+
+const imageSize = {
+    width: "200px"
 }
 
 class PupProfile extends Component {
@@ -29,13 +34,13 @@ class PupProfile extends Component {
             null
         }
 
-        // const loggedIn = this.props.loggedIn;
-        // console.log('navbar render, props: ')
-        // console.log(this.props);
+        const loggedIn = this.props.loggedIn;
+        console.log('navbar render, props: ')
+        console.log(this.props);
 
         return (
-            // <div>
-            //     {loggedIn ? (
+            <div>
+                {loggedIn ? (
                     <div className="container grid-md" style={flexStyle}>
                         <h3 className="text-center mt-2">{this.state.Pup.pupname}'s Profile</h3>
                         <div className="columns" style={flexStyle}>
@@ -71,12 +76,14 @@ class PupProfile extends Component {
                         <br />
                         <div className="columns" style={flexStyle}><a href="/Pups/" className="text-center">View All Pups</a></div>
                     </div>
-                // ) : (
-                //         <div className="container grid-md">
-                //             <h3 className="text-center mt-2">Sorry You Don't Have Permission to View This Page!</h3>
-                //         </div>
-                //     )}
-            // </div>
+                ) : (
+                        <div className="container grid-md">
+                            <h1 className="hero__title">Oops!</h1>
+                            <img src={SadDog} style={imageSize} />
+                            <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
+                        </div>
+                    )}
+            </div>
 
         );
     }
