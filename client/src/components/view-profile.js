@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Avatar from "../assets/images/winking-dog.png"
 
 const flexStyle = {
@@ -61,6 +61,7 @@ class PupProfile extends Component {
                                     {pupBio}
                                     <br />
                                     <button className="btn btn-lg" type="submit" id={this.state.Pup._id}><a href={"mailto:" + this.state.Pup.email + "?subject=Saw " + this.state.Pup.pupname + " on Pups Play! Would like to set up a playdate."}>Contact my human</a></button>
+                                    <Link className="btn btn-lg" to={"/" + this.state.Pup._id + "/messages"}>Message</Link>
                                 </div>
                             </div>
                         </div>

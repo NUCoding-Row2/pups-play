@@ -8,7 +8,7 @@ var Schema = mongoose.Schema;
 var NoteSchema = new Schema({
   username: String,
   message: String,
-  fromMe: Boolean,
+//   fromMe: Boolean,
   messageTo: [{ type: Schema.Types.ObjectId, ref: 'Pup' }],
   messageFrom: [{ type: Schema.Types.ObjectId, ref: 'Pup' }],
   date: { type: Date, default: Date.now }

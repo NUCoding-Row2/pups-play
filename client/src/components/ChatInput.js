@@ -5,7 +5,14 @@ import API from '../utils/API';
 class ChatInput extends Component {
   constructor(props) {
     super(props);
-    this.state = { chatInput: '' };
+    this.state = { 
+      chatInput: '',
+      username: '',
+      message: '',
+      fromMe: false,
+      messageTo: '',
+      messageFrom: ''
+    };
 
     // React ES6 does not bind 'this' to event handlers by default
     this.submitHandler = this.submitHandler.bind(this);
@@ -16,43 +23,50 @@ class ChatInput extends Component {
     // Stop the form from refreshing the page on submit
     event.preventDefault();
 
-    let message = new FormData();
+    let message = {
+      username: this.props.loggedInUser.ownername,
+      message: this.state.chatInput,
+      fromMe: this.state.fromMe,
+      messageTo: this.props.params.id,
+      messageFrom: this.props.loggedInUser._id,
+      date: Date.now
+    };
 
-    message.set('username', this.state.username);
-    message.set('message', this.state.message);
-    message.set('fromMe', this.state.fromMe);
-    message.set('messageTo', this.state.messageTo);
-    message.set('messageFrom', this.state.messageFrom);
-    message.set('date', this.state.date);
+    // message = new Note {
+    //   username: this.state.username,
+    //   message: this.state.message,
+    //   fromMe: this.state.fromMe,
+    //   messageTo: this.state.messageTo,
+    //   messageFrom: this.state.messageFrom,
+    //   date: Date.now      
+    // };
+
+    // let message = new FormData();
+
+    // message.set('username', this.state.username);
+    // message.set('message', "Always send this message");
+    // message.set('fromMe', this.state.fromMe);
+    // message.set('messageTo', this.state.messageTo);
+    // message.set('messageFrom', this.state.messageFrom);
+    // message.set('date', this.state.date);
 
     API.addMessage(message)
     .then(res => {
         console.log(res)
-        // if (!res.data.error) {
-        //     // this.setState({
-        //         // redirectTo: '/login',
-        //         // username: "",
-        //         // message: "",
-        //         // fromMe: "",
-        //         // messageTo: "",
-        //         // messageFrom: "",
-        //         // date: { type: Date, default: Date.now }
-        //     // })
-        // } else {
-        //     console.log('username already taken')
-        // }
+
     })
     .catch(err => {
         console.log('signup error: ')
         console.log(err)
     });
 
+    // Call the onSend callback with the chatInput message
+    this.props.onSend(message);
+    //^remove this
 
     // Clear the input box
     this.setState({ chatInput: '' });
 
-    // Call the onSend callback with the chatInput message
-    this.props.onSend(this.state.chatInput);
   }
 
   textChangeHandler(event)  {
@@ -60,6 +74,7 @@ class ChatInput extends Component {
   }
 
   render() {
+    // console.log(this.props);
     return (
       <form className="chat-input" onSubmit={this.submitHandler}>
         <input type="text"

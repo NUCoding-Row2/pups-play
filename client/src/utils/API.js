@@ -53,7 +53,7 @@ export default {
     return axios.post("/api/pups/login", UniquePup);
   },
   addMessage: function(message) {
-    console.log("Adding new message to chat");
+    console.log("API.js: Adding new message to chat");
     // return axios.post("/api/pups/", PupData)
     return axios({
       method: 'post',
@@ -61,4 +61,7 @@ export default {
       data: message
     });
   },
+  getMessages: function(messageFrom, messageTo) {
+    return axios.get(`/api/pups/chats/:${messageFrom}/:${messageTo}`);
+  }
 };

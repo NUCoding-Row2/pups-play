@@ -162,10 +162,16 @@ module.exports = {
           messageFrom: req.body.messageFrom,
           date: req.body.date
         };
-        console.log("New Pup Object:", newPup);
+        console.log("New Pup Object:", newMessage);
         db.Note
           .create(newMessage)
           .then(dbModel => res.json(dbModel))
           .catch(err => res.status(422).json(err));
   },
+  getMessages: function (req, res) {
+    db.Note
+      .find({messageFrom: req.body.messageFrom})
+      // ids are on req.params
+      // find all notes with both ids involved (in both orders)
+  }
 };

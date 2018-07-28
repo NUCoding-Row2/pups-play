@@ -25,9 +25,13 @@ class ChatApp extends Component {
 
   sendHandler(message) {
     const messageObject = {
-      username: this.props.username,
-      message
+      username: message.username,
+      message: message.message,
+      // fromMe: false,
+      messageTo: message.messageTo,
+      messageFrom: message.messageFrom
     };
+  //^remove this
 
     // Emit the message to the server
     this.socket.emit('client:message', messageObject);
@@ -47,15 +51,15 @@ class ChatApp extends Component {
     return (
       <div className="container">
         {/* <h3>Howler</h3> */}
-        <Messages messages={this.state.messages} loggedInUser={this.props.loggedInUser} />
-        <ChatInput onSend={this.sendHandler} />
+        <Messages messages={this.state.messages} loggedInUser={this.props.loggedInUser} params={this.props.match.params}/>
+        <ChatInput onSend={this.sendHandler} loggedInUser={this.props.loggedInUser}  params={this.props.match.params}/>
       </div>
     );
   }
 
 }
-ChatApp.defaultProps = {
-  username: 'Anonymous'
-};
+// ChatApp.defaultProps = {
+//   username: 'Anonymous'
+// };
 
 export default ChatApp;

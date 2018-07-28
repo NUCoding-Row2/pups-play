@@ -143,4 +143,9 @@ router
   .put(PupsController.update)
   .post(PupsController.addMessage)
 
+// Match 
+router
+  .route("/chats/:messageFrom/:messageTo")
+  .get(PupsController.getMessages)
+
 module.exports = router;

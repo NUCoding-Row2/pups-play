@@ -146,12 +146,13 @@ class App extends Component {
               />}
             />*/}
         <Route
-            exact path="/messages"
-            render={() =>
+            exact path="/:id/messages"
+            render={(props) =>
               <ChatApp
                 updateUser={this.updateUser}
                 loggedIn={this.state.loggedIn}
                 loggedInUser={this.state.loggedInUser}
+                {...props}
               />}
           />
       </div>
