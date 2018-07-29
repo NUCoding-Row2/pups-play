@@ -42,7 +42,7 @@ class PupProfile extends Component {
             <div>
                 {loggedIn ? (
                     <div className="container grid-md" style={flexStyle}>
-                        <h3 className="text-center mt-2">{this.state.Pup.pupname}'s Profile</h3>
+                        <h1 className="text-center mt-2">{this.state.Pup.pupname}'s Profile</h1>
                         <div className="columns" style={flexStyle}>
                             <div className="panel column col-6" key={this.state.Pup._id}>
                                 <div className="panel-header">

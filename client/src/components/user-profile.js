@@ -86,8 +86,8 @@ class UserProfile extends Component {
         return (
             <div>
                 {loggedIn ? (
-                    <div className="container grid-md">
-                        <h3 className="text-center mt-2">Your Profile</h3>
+                    <div className="container grid-md marginTop">
+                        <h1 className="text-center mt-2">Your Profile</h1>
                         <div className="columns">
                             <form className="form-group col-6 col-mx-auto pt-2">
                                 <label className="form-label" htmlFor="ownername">Owner's Name</label>

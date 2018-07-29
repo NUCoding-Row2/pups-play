@@ -3,6 +3,7 @@ import API from '../utils/API';
 // import { Link } from "react-router-dom";
 import Avatar from "../assets/images/winking-dog.png";
 import SadDog from "../assets/images/sad-dog.png";
+import playingDog from "../assets/images/playing-dog.png";
 
 const divMargin = {
     margin: "5px"
@@ -203,32 +204,37 @@ class ViewPups extends Component {
         return (
             <div>
                 {loggedIn ? (
+                    // <div className="pups-bg">
                     <div className="container grid-md">
-                        <h3 className="text-center mt-2">Pups That Want to Play</h3>
+                    <div className="marginTop">
+                        <h1 className="text-center mt-2">Pups That Want to Play</h1>
+                        </div>
+                        <img src={playingDog} className="resizeDogPic" />
                         <div className="columns">
                             <div className="column">
                                 <div className="columns">
                                     {this.state.Pups.map(pup => (
-                                        <div className="panel column col-5" style={divMargin} key={pup._id}>
-                                            <div className="panel-header">
-                                                <div className="h5 panel-title">{pup.pupname}</div>
-                                                <a href={"/Pups/" + pup._id} id={pup._id}>
+                                        <div className="panel viewpup column col-5 grow" style={divMargin} key={pup._id}>
+                                            <div className="panel-header text-center">
+                                            <a href={"/Pups/" + pup._id} id={pup._id}>
+                                                <div className="h2 panel-title">{pup.pupname}</div>
                                                     <figure className="avatar avatar-xl">
                                                         <img src={pup.photo} alt="..." />
                                                     </figure>
+                                                    <span class="panel-link"></span>
                                                 </a>
                                             </div>
-                                            <div className="panel-body">
-                                                My human: {pup.ownername}
-                                                <br />
+                                            <div className="panel-body text-light">
+                                                {/* My human: {pup.ownername}
+                                                <br /> */}
                                                 Age: {pup.age}
                                                 <br />
                                                 Breed: {pup.breed}
                                                 <br />
-                                                Sex: {pup.sex}
-                                                <br />
-                                                Spayed/Neutered: {pup.spayNeutered}
-                                                <br />
+                                                {/* Sex: {pup.sex}
+                                                <br /> */}
+                                                {/* Spayed/Neutered: {pup.spayNeutered}
+                                                <br /> */}
                                                 Size: {pup.size}
                                                 <br />
                                                 Location: {pup.location}
@@ -239,7 +245,7 @@ class ViewPups extends Component {
                             </div>
                             <div className="panel column col-4">
                                 <div className="panel-header">
-                                    <div className="panel-title">Filter your results</div>
+                                    <div className="panel-title"><h2>Filter your results</h2></div>
                                 </div>
                                 <div className="panel-body">
                                     <div className="form-group">
@@ -252,21 +258,23 @@ class ViewPups extends Component {
                                             <option value="breed">Breed</option>
                                         </select>
                                     </div>
-                                    {searchInput}
-                                    <button className="btn btn-lg" type="submit" onClick={this.handleFormSubmit}> Search</button>
+                                    {searchInput} 
+                                    <button className="btn btn-lg btn-primary" type="submit" onClick={this.handleFormSubmit}> Search</button> &nbsp;
                                     <button className="btn btn-lg" type="submit" onClick={this.handleReset}> View All</button>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    // </div>
                 ) : (
                         <div className="container grid-md center">
                         <h1 className="hero__title">Oops!</h1>
-                        <img src={SadDog} style={imageSize}/>
+                        <img src={SadDog} style={imageSize} />
                             <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
                         </div>
                     )}
             </div>
+            
 
         );
     }
