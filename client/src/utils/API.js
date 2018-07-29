@@ -57,4 +57,31 @@ export default {
     console.log("Login user");
     return axios.post("/api/pups/login", UniquePup);
   },
+  addMessage: function(message) {
+    console.log("API.js: Adding new message to chat");
+    // return axios.post("/api/pups/", PupData)
+    return axios({
+      method: 'post',
+      url: "/api/pups/chat/:id",
+      data: message
+    });
+  },
+  // getMessages: function(messageFrom, messageTo) {
+  //   console.log("Getting History --> messageFrom: ", messageFrom);
+  //   console.log("Getting History --> messageTo: ", messageTo);
+  //   return axios.get(`/api/pups/chats/:${messageFrom}/:${messageTo}`);
+  // }
+  getMessages: function(messageFrom,messageTo) {
+    console.log("Getting History --> messageFrom: ", messageFrom);
+    console.log("Getting History --> messageTo: ", messageTo);
+    // return axios.post(`/api/pups/chats/:${messageFrom}`,messageFrom);
+    return axios({
+      method: 'post',
+      // url: `/api/pups/chats/${messageFrom}`,
+      url: `/api/pups/chats/${messageFrom}/${messageTo}`,
+      data: messageFrom
+    });
+  
+  
+  }
 };

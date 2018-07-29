@@ -179,4 +179,69 @@ module.exports = {
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
+  addMessage: function (req, res) {
+    console.log("PupsController.js: Request to add message to Mongo: ", req.body);
+    const newMessage = {
+      username: req.body.username,
+      message: req.body.message,
+      fromMe: req.body.fromMe,
+      messageTo: req.body.messageTo,
+      messageFrom: req.body.messageFrom,
+      date: req.body.date
+    };
+    console.log("New Pup Object:", newMessage);
+    db.Note
+      .create(newMessage)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
+  },
+  getMessages: function (req, res) {
+    let messageFromSwap = req.params.messageTo;
+    let messageToSwap = req.params.messageFrom;
+    console.log("PupsController.js: HISTORY -->  messageFrom: ", req.params.messageFrom);
+    console.log("PupsController.js: HISTORY --> messageTo: ", req.params.messageTo);
+    console.log("PupsController.js: HISTORY -->  messageFromSwap: ", messageFromSwap);
+    console.log("PupsController.js: HISTORY --> messageToSwap: ", messageToSwap);
+      // db.Note
+    //   .find({messageFrom: req.body.messageFrom})
+    // ids are on req.params
+    // find all notes with both ids involved (in both orders)
+
+    db.Note
+      // .find({messageFrom: req.params.messageFrom})
+      // .then(dbModel => {
+      //   res.json(dbModel), 
+      //   console.log("********",res)
+      // })
+      // .catch(err => res.status(422).json(err));
+
+      .find({
+        // $and: [{ messageFrom: req.params.messageFrom }, { messageTo: req.params.messageTo }]
+        // $and: [{ messageFrom: messageFromSwap }, { messageTo: messageToSwap }]
+       $or :[
+           { $and: [{ messageFrom: req.params.messageFrom }, { messageTo: req.params.messageTo }] },
+           { $and: [{ messageFrom: messageFromSwap }, { messageTo: messageToSwap }] }
+       ]
+        
+      })
+      .then(dbModel => {
+        res.json(dbModel),
+          console.log("********", res.data)
+      })
+      .catch(err => res.status(422).json(err));
+
+    // console.log("PupsController.js: results of message search: ", dbModel)
+
+
+    //   .find({ messageFrom: req.params.messageFrom })
+    //   .then(
+    //     foundMessages => {
+    //       const results = foundMessages.filter(item => item.messageTo === req.params.messageTo)
+    //       res.json(results);
+    //     },
+
+    // ).catch(err => res.status(422).json(err));
+
+
+  }
 };
