@@ -69,7 +69,7 @@ class PupProfile extends Component {
                                     <br />
                                     {pupBio}
                                     <br />
-                                    <button className="btn btn-lg" type="submit" id={this.state.Pup._id}><a href={"mailto:" + this.state.Pup.email + "?subject=Saw " + this.state.Pup.pupname + " on Pups Play! Would like to set up a playdate."}>Contact my human</a></button>
+                                    <button className="btn btn-lg" type="submit" id={this.state.Pup._id}><a href={"mailto:" + this.state.Pup.email + "?subject=Saw " + this.state.Pup.pupname + " on Pups Play! Would like to set up a playdate."}>Email</a></button>
                                     <Link className="btn btn-lg" to={"/" + this.state.Pup._id + "/messages"}>Message</Link>
                                 </div>
                             </div>

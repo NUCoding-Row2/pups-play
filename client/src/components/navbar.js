@@ -80,7 +80,7 @@ class Navbar extends Component {
                         <h4 style={logoText}>Play</h4>
                     </section>
                     <section className="navbar-section">
-                        <a href="http://www.instagram.com" target="_blank" rel="noopener noreferrer" className="btn btn-link" style={text}>Instagram</a>
+                        <a href="https://www.instagram.com/pawschicago/" target="_blank" rel="noopener noreferrer" className="btn btn-link" style={text}>Instagram</a>
                         <a href="https://github.com/NUCoding-Row2/pups-play" target="_blank" rel="noopener noreferrer" className="btn btn-link" style={text}>GitHub</a>
                     </section>
                 </header>
