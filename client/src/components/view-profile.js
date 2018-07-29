@@ -7,6 +7,10 @@ const flexStyle = {
     "justifyContent": "center",
 }
 
+const buttonColor = {
+    "background-color": "#000000"
+}
+
 class PupProfile extends Component {
     state = {
         Pup: {}
@@ -60,7 +64,7 @@ class PupProfile extends Component {
                                     <br />
                                     {pupBio}
                                     <br />
-                                    <button className="btn btn-lg" type="submit" id={this.state.Pup._id}><a href={"mailto:" + this.state.Pup.email + "?subject=Saw " + this.state.Pup.pupname + " on Pups Play! Would like to set up a playdate."}>Contact my human</a></button>
+                                    <button style={buttonColor} className="btn btn-lg" type="submit" id={this.state.Pup._id}><a href={"mailto:" + this.state.Pup.email + "?subject=Saw " + this.state.Pup.pupname + " on Pups Play! Would like to set up a playdate."}>Contact my human</a></button>
                                 </div>
                             </div>
                         </div>

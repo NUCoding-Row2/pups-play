@@ -175,7 +175,7 @@ class Signup extends Component {
                                 placeholder="bio (Optional)"
                             ></textarea>
                             <br />
-                            <button className="btn btn-lg" onClick={this.handleFormSubmit}>
+                            <button className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>
                                 Submit
                             </button>
                         </form>
@@ -185,5 +185,4 @@ class Signup extends Component {
         }
     }
 }
-
 export default Signup;
