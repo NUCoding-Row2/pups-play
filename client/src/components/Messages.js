@@ -21,8 +21,11 @@ class Messages extends Component {
   // GET method to get messages
   // add logic to sort and display messages between two users
   getMessages = () => {
+    console.log("messages.js: HERE !!!!! Getting Messages History");
+    console.log(this.props.loggedInUser._id, this.props.params.id);
     API.getMessages(this.props.loggedInUser._id, this.props.params.id)
     .then(res => {
+      console.log("THIS IS IT MAN: ",res)
       this.setState({
         chat: res.data
       })
@@ -35,6 +38,21 @@ class Messages extends Component {
     // if(this.state.messages.length > 0) {
       // messages = this.state.chat.map((message, i) {
     //}
+    const chatdata = this.state.chat;
+    console.log("CHAT DATA: ", chatdata);
+    // SHOW HISTORICAL CHAT DATA
+
+    return (
+      <div className='messages' id='messageList'>
+        {this.state.chat.map(message => (
+          <div>
+            <p>{message.messageFrom}</p>
+            <p>{message.message}</p>
+          </div>
+        ))}
+      </div>
+    )
+
     const messages = this.props.messages.map((message, i) => {
         return (
           <Message

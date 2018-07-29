@@ -154,24 +154,52 @@ module.exports = {
   },
   addMessage: function (req, res) {
     console.log("PupsController.js: Request to add message to Mongo: ", req.body);
-        const newMessage = {
-          username: req.body.username,
-          message: req.body.message,
-          fromMe: req.body.fromMe,
-          messageTo: req.body.messageTo,
-          messageFrom: req.body.messageFrom,
-          date: req.body.date
-        };
-        console.log("New Pup Object:", newMessage);
-        db.Note
-          .create(newMessage)
-          .then(dbModel => res.json(dbModel))
-          .catch(err => res.status(422).json(err));
+    const newMessage = {
+      username: req.body.username,
+      message: req.body.message,
+      fromMe: req.body.fromMe,
+      messageTo: req.body.messageTo,
+      messageFrom: req.body.messageFrom,
+      date: req.body.date
+    };
+    console.log("New Pup Object:", newMessage);
+    db.Note
+      .create(newMessage)
+      .then(dbModel => res.json(dbModel))
+      .catch(err => res.status(422).json(err));
   },
   getMessages: function (req, res) {
+    console.log("PupsController.js: HISTORY -->  messageFrom: ", req.params.messageFrom);
+    console.log("PupsController.js: HISTORY --> messageTo: ", req.params.messageTo);
+
+    // db.Note
+    //   .find({messageFrom: req.body.messageFrom})
+    // ids are on req.params
+    // find all notes with both ids involved (in both orders)
+
     db.Note
-      .find({messageFrom: req.body.messageFrom})
-      // ids are on req.params
-      // find all notes with both ids involved (in both orders)
+      .find({messageFrom: req.params.messageFrom})
+      .then(dbModel => {
+        res.json(dbModel), 
+        console.log("********",res)
+      })
+      .catch(err => res.status(422).json(err));
+
+      // console.log("PupsController.js: results of message search: ", dbModel)
+      
+
+
+      // .find({ size: req.body.size })
+      // .then(dbModel => res.json(dbModel))
+      // .catch(err => res.status(422).json(err));
+    // .then(
+    //   foundMessages => {
+    //     const results = foundMessages.filter(item => item.messageTo === req.params.messageTo)
+    //     res.json(results);   
+    //   },
+
+    // ).catch(err => res.status(422).json(err));
+
+
   }
 };

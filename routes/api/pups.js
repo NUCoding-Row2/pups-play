@@ -145,7 +145,8 @@ router
 
 // Match 
 router
-  .route("/chats/:messageFrom/:messageTo")
-  .get(PupsController.getMessages)
+  // .route("/chats/:messageFrom/:messageTo")
+  .route("/chats/:messageFrom")
+  .post(PupsController.getMessages)
 
 module.exports = router;

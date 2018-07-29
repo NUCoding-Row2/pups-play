@@ -10,7 +10,7 @@ class Message extends Component {
     let fromMe = false;
 
     console.log(this.props);
-    console.log(loggedInUser._id);
+    console.log("LoggedInUser: ", loggedInUser._id);
 
     if (this.props.message.messageFrom === loggedInUser._id) {
       fromMe = true;
