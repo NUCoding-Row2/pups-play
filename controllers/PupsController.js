@@ -19,7 +19,7 @@ module.exports = {
     console.log("Retrieved Breeds from Breeds Database Collection on PupsController.js");
     db.Breed
       .find(req.query)
-      // .sort({ breedname: asc })
+      .sort({ breedname: 1 })
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },
