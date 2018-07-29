@@ -42,34 +42,63 @@ class Messages extends Component {
     console.log("CHAT DATA: ", chatdata);
     // SHOW HISTORICAL CHAT DATA
 
-    return (
-      <div className='messages' id='messageList'>
-        {this.state.chat.map(message => (
-          <div>
-            {/* <p>{message.messageFrom}</p> */}
-            <p>{message.message}</p>
-          </div>
-        ))}
-      </div>
-    )
+    // return (
+    //   <div className='messages' id='messageList'>
+    //     {this.state.chat.map(message => (
+    //       <div>
+    //         {/* <p>{message.messageFrom}</p> */}
+    //         <p>{message.message}</p>
+    //       </div>
+    //     ))}
+    //   </div>
+    // )
 
-    const messages = this.props.messages.map((message, i) => {
-        return (
-          <Message
-            message={message}
-            key={i}
-            // username={message.username}
-            // message={message.message}
-            // fromMe={message.fromMe}
-            // messageFrom={message.messageFrom} 
-            loggedInUser={this.props.loggedInUser}
-             />
-        );
-      });
+    // const messages = this.props.messages.map((message, i) => {
+    //     return (
+    //       <Message
+    //         message={message}
+    //         key={i}
+    //         // username={message.username}
+    //         // message={message.message}
+    //         // fromMe={message.fromMe}
+    //         // messageFrom={message.messageFrom} 
+    //         loggedInUser={this.props.loggedInUser}
+    //          />
+    //     );
+    //   });
+
+    let messages = chatdata.map((message, i) => {
+      return (
+        <Message
+          message={message}
+          key={i}
+          username={message.username}
+          // message={message.message}
+          // fromMe={message.fromMe}
+          messageFrom={message.messageFrom}
+          loggedInUser={this.props.loggedInUser}
+           />
+      );
+    })
+
+    let newMessages = this.props.messages.map((message, i) => {
+      return (
+        <Message
+          message={message}
+          key={i}
+          username={message.username}
+          // message={message.message}
+          // fromMe={message.fromMe}
+          messageFrom={message.messageFrom} 
+          loggedInUser={this.props.loggedInUser}
+           />
+      );
+    });
 
     return (
       <div className='messages' id='messageList'>
         { messages }
+        { newMessages }
       </div>
     );
   }
