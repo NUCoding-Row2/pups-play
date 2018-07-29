@@ -46,7 +46,7 @@ class Messages extends Component {
       <div className='messages' id='messageList'>
         {this.state.chat.map(message => (
           <div>
-            <p>{message.messageFrom}</p>
+            {/* <p>{message.messageFrom}</p> */}
             <p>{message.message}</p>
           </div>
         ))}

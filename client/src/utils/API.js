@@ -66,13 +66,14 @@ export default {
   //   console.log("Getting History --> messageTo: ", messageTo);
   //   return axios.get(`/api/pups/chats/:${messageFrom}/:${messageTo}`);
   // }
-  getMessages: function(messageFrom) {
+  getMessages: function(messageFrom,messageTo) {
     console.log("Getting History --> messageFrom: ", messageFrom);
-    // console.log("Getting History --> messageTo: ", messageTo);
+    console.log("Getting History --> messageTo: ", messageTo);
     // return axios.post(`/api/pups/chats/:${messageFrom}`,messageFrom);
     return axios({
       method: 'post',
-      url: `/api/pups/chats/${messageFrom}`,
+      // url: `/api/pups/chats/${messageFrom}`,
+      url: `/api/pups/chats/${messageFrom}/${messageTo}`,
       data: messageFrom
     });
   
