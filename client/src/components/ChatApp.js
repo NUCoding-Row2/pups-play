@@ -78,7 +78,7 @@ class ChatApp extends Component {
             </div>
             <div class="card-footer">
             <ChatInput onSend={this.sendHandler} loggedInUser={this.props.loggedInUser} params={this.props.match.params} />
-            <p class="message">Click "Enter" on keyboard to send message.</p>
+            <p class="message">Press "Enter" on your keyboard to send your message.</p>
             </div>
             </div>
           </div>
