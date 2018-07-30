@@ -21,7 +21,7 @@
   .chat-input {
     position: relative;
     overflow: hidden;
-    padding: 0 40px;
+    padding: 0 20px;
     flex-shrink: 0;
   }
   
@@ -42,7 +42,7 @@
   }
   
   .message.from-me .message-body {
-    background-color: #af9570;
+    background-color: rgba(35,166,213);
     color: white;
   }
   
@@ -64,4 +64,23 @@
     font-size: 0.9rem;
     color: #999;
     margin-bottom: 5px;
+  }
+
+.message {
+    margin: 15px 0 0;
+    color: #b3b3b3;
+    font-size: 12px;
+  }
+.message a {
+    color: #5755d9;
+    text-decoration: none;
+  }
+
+  .chat {
+    overflow: scroll;
+  }
+
+  .card-body {
+    height: 300px;
+    overflow: scroll;
   }

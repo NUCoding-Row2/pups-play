@@ -84,11 +84,14 @@ class UserProfile extends Component {
         console.log(this.props);
 
         return (
-            <div>
+            <div className="pups-bg">
                 {loggedIn ? (
-                    <div className="container grid-md marginTop">
+                    <div className="container grid-md">
+                        <div className="marginTop">
                         <h1 className="text-center mt-2">Your Profile</h1>
-                        <div className="columns">
+                        </div>
+                        <div className="columns form">
+                        <img src={loggedInUser.photo} class="avatar avatar-xl" />
                             <form className="form-group col-6 col-mx-auto pt-2">
                                 <label className="form-label" htmlFor="ownername">Owner's Name</label>
                                 <input className="form-input"
@@ -161,7 +164,8 @@ class UserProfile extends Component {
                                     name="location"
                                     placeholder="Zip code (required)"
                                 />
-                                <br />
+                                
+                                <label className="form-label" htmlFor="bio">Biography</label>
                                 <textarea className="form-input" htmlFor="bio"
                                     value={loggedInUser.bio}
                                     // onChange={this.handleInputChange}

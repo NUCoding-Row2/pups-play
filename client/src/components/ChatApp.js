@@ -11,6 +11,11 @@ const imageSize = {
   width: "200px"
 }
 
+const marginTop = {
+  "marginTop": "20px"
+}
+
+
 class ChatApp extends Component {
   socket = {};
   constructor(props) {
@@ -61,16 +66,27 @@ class ChatApp extends Component {
     return (
       <div>
         {loggedIn ? (
-          <div className="container">
+          <div className="container" style={marginTop}>
+          <div class="card">
+          <div class="card-header">
+          <div class="card-title h5">Message to:</div>
+          <div class="card-subtitle text-gray"></div>
+          <div class="card-body chat">
             {/* <h3>Howler</h3> */}
             <Messages messages={this.state.messages} loggedInUser={this.props.loggedInUser} params={this.props.match.params} />
+            </div>
+            <div class="card-footer">
             <ChatInput onSend={this.sendHandler} loggedInUser={this.props.loggedInUser} params={this.props.match.params} />
+            <p class="message">Click "Enter" on keyboard to send message.</p>
+            </div>
+            </div>
+          </div>
           </div>
         ) : (
             <div className="container grid-md">
               <h1 className="hero__title">Oops!</h1>
-              <img src={SadDog} style={imageSize} />
               <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
+              <img src={SadDog} style={imageSize} />
             </div>
           )}
       </div>

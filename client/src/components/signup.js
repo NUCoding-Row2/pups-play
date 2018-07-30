@@ -4,6 +4,9 @@ import { Redirect } from 'react-router-dom';
 // import { FormData } from "form-data";
 import API from '../utils/API';
 
+const divMargin = {
+    "marginTop": "20px"
+}
 
 class Signup extends Component {
     state = {
@@ -112,9 +115,12 @@ class Signup extends Component {
         } else {
             return (
                 <div className="container grid-md">
+                <div className="marginTop">
                     <h1 className="text-center mt-2">Sign Up</h1>
-                    <div className="columns">
+                    </div>
+                    <div className="columns form">
                         <form className="form-group col-6 col-mx-auto pt-2">
+                        <div class="divider text-center" data-content="OWNER"></div>
                             <label className="form-label" htmlFor="ownername">Owner's Name</label>
                             <input className="form-input"
                                 value={this.state.ownername}
@@ -141,6 +147,7 @@ class Signup extends Component {
                                 pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$"
                             />
                             <p class="form-input-hint">Password must be 8 or more characters that are of at least one number, one uppercase and lowercase letter.</p>
+                            <div class="divider text-center" data-content="PUPPY"></div>
                             <label className="form-label" htmlFor="pupName">Pup's Name</label>
                             <input className="form-input"
                                 value={this.state.pupname}
@@ -155,22 +162,20 @@ class Signup extends Component {
                                     <option key={breed._id} value={breed.breedname}>{breed.breedname}</option>
                                 ))}
                             </select>
-                            
-                            <label className="form-label" htmlFor="sex">Sex</label>
+                            <label className="form-label" style={divMargin} htmlFor="sex">Sex</label>
                             <select className="form-select" name="sex" onChange={this.handleInputChange}>
                                 <option>Select a gender</option>
                                 <option value="female">Female</option>
                                 <option value="male">Male</option>
                             </select>
-
-                            <label className="form-label" htmlFor="spayNeutered">Has your pup been spayed/neutered?</label>
+                            <label className="form-label" style={divMargin} htmlFor="spayNeutered">Has your pup been spayed/neutered?</label>
                             <select className="form-select" name="spayNeutered" onChange={this.handleInputChange}>
                                 <option>Select a response</option>
                                 <option value="yes">Yes</option>
                                 <option value="no">No</option>
                             </select>
 
-                            <label className="form-label" htmlFor="age">Age</label>
+                            <label className="form-label" style={divMargin} htmlFor="age">Age</label>
                             <input className="form-input"
                                 value={this.state.age}
                                 onChange={this.handleInputChange}
@@ -185,7 +190,7 @@ class Signup extends Component {
                                 <option value="large">Large (more than 50 lbs)</option>
                             </select>
                             
-                            <label className="form-label" htmlFor="zipCode">Location</label>
+                            <label className="form-label" style={divMargin} htmlFor="zipCode">Location</label>
                             <input className="form-input"
                                 value={this.state.location}
                                 onChange={this.handleInputChange}
@@ -211,12 +216,14 @@ class Signup extends Component {
                                 placeholder="bio (optional) - Tell us more about your pup!"
                             ></textarea>
                             <br />
-                            <button className="btn btn-lg" onClick={this.handleFormSubmit}>
+                            <button className="btn btn-lg btn-primary" onClick={this.handleFormSubmit}>
                                 Submit
                             </button>
+                            <p class="message">Already registered? <a href="/login">Sign In</a></p>
                         </form>
                     </div>
                 </div>
+                
             );
         }
     }

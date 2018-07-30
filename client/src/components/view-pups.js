@@ -9,7 +9,12 @@ const divMargin = {
     margin: "5px"
 }
 
-const imageSize = {
+// const imageSize = {
+//     width: "200px"
+// }
+
+const center = {
+    "justifyContent": "center",
     width: "200px"
 }
 
@@ -202,14 +207,14 @@ class ViewPups extends Component {
         console.log(this.props);
 
         return (
-            <div>
+            <div className="pups-bg">
                 {loggedIn ? (
                     // <div className="pups-bg">
-                    <div className="container grid-md">
+                    <div className="container grid-lg">
                     <div className="marginTop">
                         <h1 className="text-center mt-2">Pups That Want to Play</h1>
                         </div>
-                        <img src={playingDog} className="resizeDogPic" />
+    <div class="box bounce-5"><img src={playingDog} className="resizeDogPic" /></div>
                         <div className="columns">
                             <div className="column">
                                 <div className="columns">
@@ -245,11 +250,11 @@ class ViewPups extends Component {
                             </div>
                             <div className="panel column col-4">
                                 <div className="panel-header">
-                                    <div className="panel-title"><h2>Filter your results</h2></div>
+                                    <div className="panel-title"><h2><i class="icon icon-arrow-left text-light"></i> Filter your results</h2></div>
                                 </div>
                                 <div className="panel-body">
                                     <div className="form-group">
-                                        Search Options:
+                                    <div className="text-light">Search Options:</div>
                                 <select className="form-select" name="filterType" onChange={this.handleInputChange}>
                                             <option value="">View All</option>
                                             <option value="location" >Location</option>
@@ -269,7 +274,7 @@ class ViewPups extends Component {
                 ) : (
                         <div className="container grid-md center">
                         <h1 className="hero__title">Oops!</h1>
-                        <img src={SadDog} style={imageSize} />
+                        <img src={SadDog} style={center} />
                             <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
                         </div>
                     )}
