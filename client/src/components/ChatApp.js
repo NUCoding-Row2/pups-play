@@ -11,10 +11,11 @@ const imageSize = {
   width: "200px"
 }
 
-const marginTop = {
-  "marginTop": "20px"
-}
 
+const center = {
+  alignSelf: "center",
+  width: "200px"
+}
 
 class ChatApp extends Component {
   socket = {};
@@ -64,14 +65,14 @@ class ChatApp extends Component {
 
 
     return (
-      <div>
+      <div className="pups-bg">
         {loggedIn ? (
-          <div className="container" style={marginTop}>
-          <div class="card">
-          <div class="card-header">
-          <div class="card-title h5">Message to:</div>
-          <div class="card-subtitle text-gray"></div>
-          <div class="card-body chat">
+          <div className="container centerContent">
+          <div className="card chat-specs">
+          <div className="card-header">
+          <div className="card-title h5">Message to:</div>
+          <div className="card-subtitle text-gray"></div>
+          <div className="card-body chat chatWindow">
             {/* <h3>Howler</h3> */}
             <Messages messages={this.state.messages} loggedInUser={this.props.loggedInUser} params={this.props.match.params} />
             </div>
@@ -81,12 +82,14 @@ class ChatApp extends Component {
             </div>
             </div>
           </div>
+          <br />
+          <div className="columns"><a href="javascript:history.back()" className="text-center"><button class="btn btn-primary btn-action btn-lg"><i class="icon icon-back"></i></button> Back to profile</a></div>
           </div>
         ) : (
             <div className="container grid-md">
               <h1 className="hero__title">Oops!</h1>
               <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
-              <img src={SadDog} style={imageSize} />
+              <img src={SadDog} style={imageSize} style={center} />
             </div>
           )}
       </div>

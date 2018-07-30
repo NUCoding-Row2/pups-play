@@ -7,6 +7,11 @@ const imageSize = {
     width: "200px"
 }
 
+const center = {
+    alignSelf: "center",
+    width: "200px"
+}
+
 class UserProfile extends Component {
     constructor(props) {
         super(props)
@@ -182,8 +187,8 @@ class UserProfile extends Component {
                 ) : (
                         <div className="container grid-md">
                         <h1 className="hero__title">Oops!</h1>
-                        <img src={SadDog} style={imageSize}/>
                             <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
+                            <img src={SadDog} style={imageSize} style={center} />
                         </div>
                     )}
 

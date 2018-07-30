@@ -80,6 +80,8 @@ class Login extends Component {
             return <Redirect to={{ pathname: this.state.redirectTo }} />
         } else {
             return (
+                <div className="background2-image">
+                <div className="pups-bg">
                 <div className="container grid-md">
                 <div className="marginTop">
                     <h1 className="text-center mt-2">Log In</h1>
@@ -93,9 +95,11 @@ class Login extends Component {
                             />
                             <br />
                             <button className="btn btn-lg btn-primary" type="submit" onClick={this.handleFormSubmit}>Log In</button>
-                            <p class="message">Not registered? <a href="/signup">Create an account</a></p>
+                            <p className="message">Not registered? <a href="/signup">Create an account</a></p>
                         </div>
                     </div>
+                </div>
+                </div>
                 </div>
             );
         }

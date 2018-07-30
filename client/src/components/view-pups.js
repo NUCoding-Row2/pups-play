@@ -14,7 +14,7 @@ const divMargin = {
 // }
 
 const center = {
-    "justifyContent": "center",
+    alignSelf: "center",
     width: "200px"
 }
 
@@ -207,6 +207,7 @@ class ViewPups extends Component {
         console.log(this.props);
 
         return (
+            <div className="background3-image">
             <div className="pups-bg">
                 {loggedIn ? (
                     // <div className="pups-bg">
@@ -274,10 +275,11 @@ class ViewPups extends Component {
                 ) : (
                         <div className="container grid-md center">
                         <h1 className="hero__title">Oops!</h1>
-                        <img src={SadDog} style={center} />
                             <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
+                            <img src={SadDog} style={center} />
                         </div>
                     )}
+            </div>
             </div>
             
 

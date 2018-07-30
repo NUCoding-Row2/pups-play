@@ -80,7 +80,16 @@
     overflow: scroll;
   }
 
-  .card-body {
+  .chatWindow {
     height: 300px;
     overflow: scroll;
+  }
+
+  .chat-specs {
+    width: 500px;
+  }
+
+  .centerContent {
+align-items: center;
+padding: 30px;
   }
