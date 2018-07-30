@@ -387,4 +387,11 @@ p {
       color: #000;
   }
 
-  
+  .footer {
+      position: fixed;
+      padding-bottom: 20px;
+  }
+
+  .container {
+      padding: 20px;
+  }

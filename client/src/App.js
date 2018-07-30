@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 // import API from './utils/API';
 import Navbar from './components/navbar';
+import Footer from './components/footer';
 import Home from './components/home';
 import Signup from './components/signup';
 import Login from './components/login';
@@ -113,6 +114,7 @@ class App extends Component {
                 {...props}
               />}
             />
+            <Footer />
         </div>
       </Router>
     );
