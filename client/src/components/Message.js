@@ -5,10 +5,6 @@ class Message extends Component {
   render() {
     const { loggedIn, loggedInUser } = this.props;
 
-    if (!this.props.loggedIn) {
-      return false;
-    }
-    
     let fromMe = false;
 
     console.log(this.props);
