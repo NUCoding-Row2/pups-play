@@ -1,4 +1,4 @@
-# pups-play
+# Pups Play
 
 Pups Play helps fellow dog owners connect and find playmates for their favorite four-legged friends.
 
