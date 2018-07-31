@@ -43,10 +43,6 @@ class PupProfile extends Component {
         console.log('navbar render, props: ')
         console.log(this.props);
 
-        if (!this.props.loggedIn) {
-            return false;
-        }
-
         return (
             <div className="pups-bg">
                 {loggedIn ? (
