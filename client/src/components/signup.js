@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-// import { Link } from "react-router-dom";
-// import { FormData } from "form-data";
 import API from '../utils/API';
 
 const divMargin = {

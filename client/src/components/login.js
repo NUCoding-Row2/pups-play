@@ -6,7 +6,6 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            // Pups: [],
             ownername: "",
             email: "",
             password: "",
@@ -34,16 +33,8 @@ class Login extends Component {
         console.log('handleSubmit');
 
         API.login({
-            // ownername: this.state.ownername,
             email: this.state.email,
             password: this.state.password,
-            // pupname: this.state.pupname,
-            // breed: this.state.breed,
-            // age: this.state.age,
-            // size: this.state.size,
-            // location: this.state.location,
-            // bio: this.state.bio,
-            // date: this.state.date
         })
             .then(res => {
                 console.log('login response: ')
@@ -63,7 +54,7 @@ class Login extends Component {
                         bio: this.state.bio,
                         date: this.state.date
                     })
-                    // update the state to redirect to home
+                    // update the state to redirect to pups when you log in
                     this.setState({
                         redirectTo: '/pups'
                     })

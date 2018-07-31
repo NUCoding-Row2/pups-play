@@ -18,11 +18,6 @@ export default {
   deletePup: function(id) {
     return axios.delete("/api/pups/" + id);
   },
-  // // Saves a Pup to the database
-  // savePup: function(PupData) {
-  //   return axios.post("/api/pups", PupData);
-  // },
-  // Adding new user/pup to the database
   signup: function(PupData) {
     console.log("Adding new user/pup to the database");
     // return axios.post("/api/pups/", PupData)
@@ -81,7 +76,5 @@ export default {
       url: `/api/pups/chats/${messageFrom}/${messageTo}`,
       data: messageFrom
     });
-  
-  
   }
 };

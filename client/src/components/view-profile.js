@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 import { Link } from "react-router-dom";
-import Avatar from "../assets/images/winking-dog.png";
 import SadDog from "../assets/images/sad-dog.png";
 
 const flexStyle = {
@@ -42,6 +41,10 @@ class PupProfile extends Component {
         const loggedIn = this.props.loggedIn;
         console.log('navbar render, props: ')
         console.log(this.props);
+
+        if (!this.props.loggedIn) {
+            return false;
+        }
 
         return (
             <div className="pups-bg">

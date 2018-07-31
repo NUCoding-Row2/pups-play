@@ -41,7 +41,6 @@ class ChatApp extends Component {
       messageTo: message.messageTo,
       messageFrom: message.messageFrom
     };
-    //^remove this
 
     // Emit the message to the server
     this.socket.emit('client:message', messageObject);

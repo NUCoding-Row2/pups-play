@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
 class Message extends Component {
-  
+
   render() {
     const { loggedIn, loggedInUser } = this.props;
-    // const loggedInUser = this.props.loggedInUser;
-    // Was the message sent by the current user. If so, add a css class
-    // change this to message.messageFrom === loggedInUser._id
+
+    if (!this.props.loggedIn) {
+      return false;
+    }
+    
     let fromMe = false;
 
     console.log(this.props);
@@ -19,11 +21,11 @@ class Message extends Component {
     return (
       <div className={`message ${fromMe ? 'from-me' : ''}`}>
         <div className='username'>
-          { this.props.message.username }
+          {this.props.message.username}
           {/* { loggedInUser.ownername } */}
         </div>
         <div className='message-body'>
-          { this.props.message.message }
+          {this.props.message.message}
         </div>
       </div>
     );

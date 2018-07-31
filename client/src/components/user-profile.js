@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
-// import { Link } from "react-router-dom";
 import SadDog from "../assets/images/sad-dog.png";
 
 const imageSize = {
@@ -15,78 +14,17 @@ const center = {
 class UserProfile extends Component {
     constructor(props) {
         super(props)
-        // this.state = {
-            // Pups: [],
-            // ownername: "",
-            // email: "",
-            // password: "",
-            // pupname: "",
-            // breed: "",
-            // age: "",
-            // size: "",
-            // location: "",
-            // bio: "",
-            // date: ""
-        // }
-        // this.handleFormSubmit = this.handleFormSubmit.bind(this)
-        // this.handleInputChange = this.handleInputChange.bind(this)
     }
-
-    // handleInputChange = event => {
-    //     const { name, value } = event.target;
-    //     this.setState({
-    //         [name]: value
-    //     });
-    // };
-
-    // handleFormSubmit = event => {
-    //     console.log('sign-up handleSubmit, email: ')
-    //     console.log(this.state.email)
-    //     event.preventDefault();
-
-    //     API.signup({
-    //         ownername: this.state.ownername,
-    //         email: this.state.email,
-    //         password: this.state.password,
-    //         pupname: this.state.pupname,
-    //         breed: this.state.breed,
-    //         age: this.state.age,
-    //         size: this.state.size,
-    //         location: this.state.location,
-    //         bio: this.state.bio,
-    //         date: Date.now
-    //     })
-    //         .then(res => {
-    //             console.log(res)
-    //             if (!res.data.error) {
-    //                 console.log('successful signup')
-    //                 this.setState({
-    //                     ownername: "",
-    //                     email: "",
-    //                     password: "",
-    //                     pupname: "",
-    //                     breed: "",
-    //                     age: "",
-    //                     size: "",
-    //                     location: "",
-    //                     bio: "",
-    //                     date: ""
-    //                 })
-    //             } else {
-    //                 console.log('username already taken')
-    //             }
-    //         })
-    //         .catch(err => {
-    //             console.log('signup error: ')
-    //             console.log(err)
-    //         });
-    // };
 
     render() {
         const loggedIn = this.props.loggedIn;
         const loggedInUser = this.props.loggedInUser;
         console.log('navbar render, props: ')
         console.log(this.props);
+
+        if (!this.props.loggedIn) {
+            return false;
+        }
 
         return (
             <div className="pups-bg">

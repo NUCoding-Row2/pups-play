@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
-// import { Link } from "react-router-dom";
-import Avatar from "../assets/images/winking-dog.png";
 import SadDog from "../assets/images/sad-dog.png";
 import playingDog from "../assets/images/playing-dog.png";
 
@@ -184,6 +182,14 @@ class ViewPups extends Component {
 
     render() {
 
+        const loggedIn = this.props.loggedIn;
+        console.log('navbar render, props: ')
+        console.log(this.props);
+
+        if (!this.props.loggedIn) {
+            return false;
+        }
+
         let searchInput;
 
         if (this.state.filterType === "location") {
@@ -207,88 +213,84 @@ class ViewPups extends Component {
             </select>
         }
 
-        const loggedIn = this.props.loggedIn;
-        console.log('navbar render, props: ')
-        console.log(this.props);
-
         return (
             <div className="background3-image">
-            <div className="pups-bg">
-                {loggedIn ? (
-                    // <div className="pups-bg">
-                    <div className="container grid-lg">
-                    <div className="marginTop">
-                        <h1 className="text-center mt-2">Pups That Want to Play</h1>
-                        </div>
-    <div class="box bounce-5"><img src={playingDog} className="resizeDogPic" /></div>
-                        <div className="columns">
-                            <div className="column">
-                                <div className="columns">
-                                    {this.state.Pups.map(pup => (
-                                        <div className="panel viewpup column col-5 grow" style={divMargin} key={pup._id}>
-                                            <div className="panel-header text-center">
-                                            <a href={"/Pups/" + pup._id} id={pup._id}>
-                                                <div className="h2 panel-title">{pup.pupname}</div>
-                                                    <figure className="avatar avatar-xl">
-                                                        <img src={pup.photo} alt="..." />
-                                                    </figure>
-                                                    <span class="panel-link"></span>
-                                                </a>
+                <div className="pups-bg">
+                    {loggedIn ? (
+                        // <div className="pups-bg">
+                        <div className="container grid-lg">
+                            <div className="marginTop">
+                                <h1 className="text-center mt-2">Pups That Want to Play</h1>
+                            </div>
+                            <div class="box bounce-5"><img src={playingDog} className="resizeDogPic" /></div>
+                            <div className="columns">
+                                <div className="column">
+                                    <div className="columns">
+                                        {this.state.Pups.map(pup => (
+                                            <div className="panel viewpup column col-5 grow" style={divMargin} key={pup._id}>
+                                                <div className="panel-header text-center">
+                                                    <a href={"/Pups/" + pup._id} id={pup._id}>
+                                                        <div className="h2 panel-title">{pup.pupname}</div>
+                                                        <figure className="avatar avatar-xl">
+                                                            <img src={pup.photo} alt="..." />
+                                                        </figure>
+                                                        <span class="panel-link"></span>
+                                                    </a>
+                                                </div>
+                                                <div className="panel-body text-light">
+                                                    {/* My human: {pup.ownername}
+                                                <br /> */}
+                                                    Age: {pup.age}
+                                                    <br />
+                                                    Breed: {pup.breed}
+                                                    <br />
+                                                    {/* Sex: {pup.sex}
+                                                <br /> */}
+                                                    {/* Spayed/Neutered: {pup.spayNeutered}
+                                                <br /> */}
+                                                    Size: {pup.size}
+                                                    <br />
+                                                    Location: {pup.location}
+                                                </div>
                                             </div>
-                                            <div className="panel-body text-light">
-                                                {/* My human: {pup.ownername}
-                                                <br /> */}
-                                                Age: {pup.age}
-                                                <br />
-                                                Breed: {pup.breed}
-                                                <br />
-                                                {/* Sex: {pup.sex}
-                                                <br /> */}
-                                                {/* Spayed/Neutered: {pup.spayNeutered}
-                                                <br /> */}
-                                                Size: {pup.size}
-                                                <br />
-                                                Location: {pup.location}
-                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                                <div className="panel column col-4">
+                                    <div className="panel-header">
+                                        <div className="panel-title"><h2><i class="icon icon-arrow-left text-light"></i> Filter your results</h2></div>
+                                    </div>
+                                    <div className="panel-body">
+                                        <div className="form-group">
+                                            <div className="text-light">Search Options:</div>
+                                            <select className="form-select" name="filterType" onChange={this.handleInputChange}>
+                                                <option value="">View All</option>
+                                                <option value="location" >Location</option>
+                                                <option value="age">Age</option>
+                                                <option value="size">Size</option>
+                                                <option value="breed">Breed</option>
+                                            </select>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="panel column col-4">
-                                <div className="panel-header">
-                                    <div className="panel-title"><h2><i class="icon icon-arrow-left text-light"></i> Filter your results</h2></div>
-                                </div>
-                                <div className="panel-body">
-                                    <div className="form-group">
-                                    <div className="text-light">Search Options:</div>
-                                <select className="form-select" name="filterType" onChange={this.handleInputChange}>
-                                            <option value="">View All</option>
-                                            <option value="location" >Location</option>
-                                            <option value="age">Age</option>
-                                            <option value="size">Size</option>
-                                            <option value="breed">Breed</option>
-                                        </select>
-                                    </div>
-                                    {searchInput} 
-                                    <div style={divPadding}>
-                                    <button className="btn btn-lg btn-primary" type="submit" onClick={this.handleFormSubmit}> Search</button> &nbsp;
+                                        {searchInput}
+                                        <div style={divPadding}>
+                                            <button className="btn btn-lg btn-primary" type="submit" onClick={this.handleFormSubmit}> Search</button> &nbsp;
                                     <button className="btn btn-lg" type="submit" onClick={this.handleReset}> View All</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    // </div>
-                ) : (
-                        <div className="container grid-md center">
-                        <h1 className="hero__title">Oops!</h1>
-                            <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
-                            <img src={SadDog} style={center} />
-                        </div>
-                    )}
+                        // </div>
+                    ) : (
+                            <div className="container grid-md center">
+                                <h1 className="hero__title">Oops!</h1>
+                                <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
+                                <img src={SadDog} style={center} />
+                            </div>
+                        )}
+                </div>
             </div>
-            </div>
-            
+
 
         );
     }

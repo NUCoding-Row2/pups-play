@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import API from './utils/API';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import Home from './components/home';
@@ -94,7 +93,6 @@ class App extends Component {
                 loggedIn={this.state.loggedIn}
               />}
           />
-          {/*<Route exact path="/pups/:id" component={PupProfile} />*/}
           <Route
             exact path="/pups/:id"
             render={({ match }) =>
