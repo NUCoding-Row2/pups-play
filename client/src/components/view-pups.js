@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import API from '../utils/API';
 import SadDog from "../assets/images/sad-dog.png";
 import playingDog from "../assets/images/playing-dog.png";
+import Delay from "./Delay";
 
 const divMargin = {
     margin: "5px"
@@ -11,10 +12,6 @@ const divPadding = {
     paddingTop: "15px",
     paddingBottom: "10px"
 }
-
-// const imageSize = {
-//     width: "200px"
-// }
 
 const center = {
     alignSelf: "center",
@@ -186,10 +183,6 @@ class ViewPups extends Component {
         console.log('navbar render, props: ')
         console.log(this.props);
 
-        if (!this.props.loggedIn) {
-            return false;
-        }
-
         let searchInput;
 
         if (this.state.filterType === "location") {
@@ -282,11 +275,13 @@ class ViewPups extends Component {
                         </div>
                         // </div>
                     ) : (
-                            <div className="container grid-md center">
-                                <h1 className="hero__title">Oops!</h1>
-                                <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
-                                <img src={SadDog} style={center} />
-                            </div>
+                            <Delay wait={250}>
+                                <div className="container grid-md center">
+                                    <h1 className="hero__title">Oops!</h1>
+                                    <p className="subtitle text-center mt-2">Sorry You Don't Have Permission to View This Page!</p>
+                                    <img src={SadDog} style={center} />
+                                </div>
+                            </Delay>
                         )}
                 </div>
             </div>

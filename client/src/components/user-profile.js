@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import API from '../utils/API';
 import SadDog from "../assets/images/sad-dog.png";
+import Delay from "./Delay";
 
 const imageSize = {
     width: "200px"
@@ -22,19 +23,15 @@ class UserProfile extends Component {
         console.log('navbar render, props: ')
         console.log(this.props);
 
-        if (!this.props.loggedIn) {
-            return false;
-        }
-
         return (
             <div className="pups-bg">
                 {loggedIn ? (
                     <div className="container grid-md">
                         <div className="marginTop">
-                        <h1 className="text-center mt-2">Your Profile</h1>
+                            <h1 className="text-center mt-2">Your Profile</h1>
                         </div>
                         <div className="columns form">
-                        <img src={loggedInUser.photo} class="avatar avatar-xl" />
+                            <img src={loggedInUser.photo} class="avatar avatar-xl" />
                             <form className="form-group col-6 col-mx-auto pt-2">
                                 <label className="form-label" htmlFor="ownername">Owner's Name</label>
                                 <input className="form-input"
@@ -107,7 +104,7 @@ class UserProfile extends Component {
                                     name="location"
                                     placeholder="Zip code (required)"
                                 />
-                                
+
                                 <label className="form-label" htmlFor="bio">Biography</label>
                                 <textarea className="form-input" htmlFor="bio"
                                     value={loggedInUser.bio}
@@ -123,11 +120,13 @@ class UserProfile extends Component {
                         </div>
                     </div>
                 ) : (
-                        <div className="container grid-md">
-                        <h1 className="hero__title">Oops!</h1>
-                            <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
-                            <img src={SadDog} style={imageSize} style={center} />
-                        </div>
+                        <Delay wait={250}>
+                            <div className="container grid-md">
+                                <h1 className="hero__title">Oops!</h1>
+                                <p className="text-center mt-2 subtitle">Sorry You Don't Have Permission to View This Page!</p>
+                                <img src={SadDog} style={imageSize} style={center} />
+                            </div>
+                        </Delay>
                     )}
 
             </div>
