@@ -9,6 +9,11 @@ const divMargin = {
     margin: "5px"
 }
 
+const divPadding = {
+    paddingTop: "15px",
+    paddingBottom: "10px"
+}
+
 // const imageSize = {
 //     width: "200px"
 // }
@@ -265,8 +270,10 @@ class ViewPups extends Component {
                                         </select>
                                     </div>
                                     {searchInput} 
+                                    <div style={divPadding}>
                                     <button className="btn btn-lg btn-primary" type="submit" onClick={this.handleFormSubmit}> Search</button> &nbsp;
                                     <button className="btn btn-lg" type="submit" onClick={this.handleReset}> View All</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

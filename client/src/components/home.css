@@ -193,7 +193,7 @@ h1, h2, h3, .panel-header {
 
 .colorful-bg {
     width: 100wh;
-	height: 100vh;
+	min-height: 100vh;
     background: linear-gradient(-45deg, rgba(238,119,82,.75), rgba(231,60,126,.75), rgba(35,166,213,.75), rgba(35,213,171,.75));
     background-repeat: no-repeat;
     background-size: 300% 300%;

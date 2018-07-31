@@ -7,8 +7,8 @@ const image = {
     width: "20%"
 }
 
-const divMargin = {
-    "marginTop": "10px"
+const divPadding = {
+    "paddingTop": "10px"
 }
 
 class Home extends Component {
@@ -16,7 +16,7 @@ class Home extends Component {
         return (
             <div className="background-image">
             <div className="hero">
-                <div className="container grid-md" style={divMargin}>
+                <div className="container grid-md" style={divPadding}>
                     <div>
                     <div className="centered-block">
                         <h1 className="hero__title">Woof!</h1>
